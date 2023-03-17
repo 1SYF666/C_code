@@ -1,0 +1,100 @@
+#define _CRT_SECURE_NO_WARNINGS 1
+#include <stdio.h>
+#include <stdlib.h>
+
+//struct stu
+//{
+//	char name[10];
+//	short age;
+//	char sex[10];
+//	char tel[12];
+//};
+
+//typedef struct stu
+//{
+//	char name[10];
+//	short age;
+//	char sex[10];
+//	char tel[12];
+//}STU;
+//
+//int main()
+//{
+//	struct stu s = { "张三",22,"男","1234334444" };
+//	STU s1 = { "李明",23,"男","12344445678" };
+//	printf("%s\n", s.name);
+//	printf("%d\n", s.age);
+//	printf("%s\n", s.sex);
+//	printf("%s\n", s.tel);
+//	printf("************\n");
+//	printf("%s\n", s1.name);
+//	printf("%d\n", s1.age);
+//	printf("%s\n", s1.sex);
+//	printf("%s\n", s1.tel);
+//
+//	return 0;
+//}
+
+//int main()
+//{
+//	int i = 0;
+//	for (i = 0; i < 100; i++)
+//	{
+//		printf("%d ", i);
+//	}
+//	system("pause");
+//	return 0;
+//}
+
+
+//int main()
+//{
+//	int i = 0;
+//	int arr[10] = { 1,2,3,4,5,6,7,8,9,10 };
+//	for (i = 0; i < 12; i++)
+//	{
+//		printf("hehe\n");
+//		arr[i] = 0;
+//	}
+//	//system("pause");
+//	return 0;
+//}
+//F5-启动调试-和F9配合使用的
+//F9设置断点
+
+//int main()
+//{
+//	int i = 0;
+//	for (i = 0; i < 10; i++)
+//	{
+//		printf("%d ", i);
+//	}
+//	for (i = 0; i < 10; i++)
+//	{
+//		printf("%d ", 10-i);
+//	}
+//	return 0;
+//}
+
+//F10-逐过程
+//F11-逐语句-可以进入自己写的函数
+
+int Add(int x, int y)
+{
+	return x + y;
+}
+int main()
+{
+	printf("hehe\n");
+	int a = 20;
+	int b = 10;
+	int c = Add(a, b);
+	return 0;
+}
+
+
+
+
+
+
+
