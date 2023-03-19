@@ -63,3 +63,173 @@ int main()
 	printf("%d\n", sum);
 	return 0;
 }
+
+
+#define _CRT_SECURE_NO_WARNINGS 1
+#include <stdio.h>
+#include <assert.h>
+
+//
+//void my_strcpy(char* dest, char* src)
+//{
+//	while (*src != '\0')
+//	{
+//		*dest++ = *src++;
+//	}
+//
+//	*dest = *src;
+//}
+
+//优化2
+//void my_strcpy(char* dest, char* src)
+//{
+//	//当最后‘\0’拷贝过去，然后表达式的结果为0，假故跳出循环
+//	while (*dest++ = *src++)
+//	{
+//		;
+//	}
+//}
+
+//优化3
+//void my_strcpy(char* dest, char* src)
+//{
+//	if (dest != NULL && src != NULL)
+//	{
+//		while (*dest++ = *src++)
+//		{
+//			;
+//		}
+//	}
+//}
+
+//优化4
+//void my_strcpy(char* dest, char* src)
+//{
+//	//断言，括号里判断是真，则什么事情都没有发生
+//	//断言，括号里判断是假，会报错
+//	assert(dest != NULL);
+//	assert(src != NULL);
+//	
+//	while (*dest++ = *src++)
+//	{
+//		;
+//
+//	}
+//	
+//}
+
+//优化5
+//void my_strcpy(char* dest, const char* src)
+//{
+//	//断言，括号里判断是真，则什么事情都没有发生
+//	//断言，括号里判断是假，会报错
+//	assert(dest != NULL);
+//	assert(src != NULL);
+//
+//	while (*dest++ = *src++)
+//	{
+//		;
+//
+//	}
+//
+//}
+
+//int main()
+//{
+//	char arr1[] = "#################";
+//	char arr2[] = "bit";
+//	my_strcpy(arr1, NULL);
+//	printf("%s\n", arr1);
+//	return 0;
+//}
+
+//优化6---------链式访问
+//char* my_strcpy(char* dest, const char* src)
+//{
+//	char* ret = dest;
+//	//断言，括号里判断是真，则什么事情都没有发生
+//	//断言，括号里判断是假，会报错
+//	assert(dest != NULL);
+//	assert(src != NULL);
+//	//把src指向的字符串拷贝到dest指向的地址内，包括‘\0’
+//	while (*dest++ = *src++)
+//	{
+//		;
+//	}
+//
+//	return ret;
+//}
+//
+//
+//int main()
+//{
+//	char arr1[] = "#################";
+//	char arr2[] = "bit";
+//	char* ret=my_strcpy(arr1, arr2);
+//	printf("%s\n", ret);
+//	return 0;
+//}
+
+//练习：
+int my_strlen(const char* src)//const不希望把src指向的内容改变
+{
+	int count = 0;
+	assert(src != NULL); //保证指针的有效性
+	while (*src++ != '\0')
+	{
+		count++;
+	}
+	return count;
+}
+
+int main()
+{
+	char arr[] = { "abcdef" };
+	int ret = my_strlen(arr);
+	printf("%d\n", ret);
+
+	return 0;
+}
+
+
+
+//const--语法问题
+//int main()
+//{
+//	/*int num = 0;
+//	int* p = &num;
+//	*p = 20;
+//	printf("%d\n", num);*/
+//	
+//	const int num = 0;
+//	//const int* p = &num;
+//	*p = 20; //const放在指针变量的*号左边，修饰的*p,不能通过p来改变*p(num)的值
+//	//printf("%d\n", num);
+//	
+//	int* const p = num;
+//	*p = 20; //const放在指针变量的*号右边时，修饰的指针变量p本身，p不能被改变了
+//	int n = 100;
+//	p = &n;
+//	printf("%d\n", num);
+//
+//	return 0;
+//}
+
+
+//报链接器错误
+//int main()
+//{
+//	int a = 0;
+//	int* p = &a;
+//	assert(p != NULL);
+//	
+//	return 0;
+//}
+//int main()
+//{
+//	int a = 0;
+//	int b = 20;
+//	int sum = Add(a, b);
+//	printf("%d\n", sum);
+//	return 0;
+//}
