@@ -1,0 +1,101 @@
+#define _CRT_SECURE_NO_WARNINGS 1
+#include <stdio.h>
+
+
+
+//C语言类型——
+//1.内置类型
+//char
+//short
+//int
+//long
+// 浮点型家族
+//float
+//double
+
+//2.构造类型
+//数组类型
+//结构体类型
+//枚举类型
+//联合类型
+
+//3.指针类型
+// char* p
+// int* p
+
+//4.空类型void
+
+
+//我们常用的 X86 结构是小端模式，而 KEIL C51 则为大端模式。
+// 很多的ARM，DSP都为小端模式。有些ARM处理器还可以
+//由硬件来选择是大端模式还是小端
+
+//int main()
+//{
+//	//整型是如何以补码的方式存入的
+//	int a = 10;
+//	//浮点型是如何存入的呢？
+//	float f = 10.0;
+//	int a = 1;
+//	//源码—反码—补码00000000 00000000 00000000 00000001
+//	//源码10000000 00000000 00000000 00000001
+//	//反码11111111 11111111 11111111 11111110
+//	//补码11111111 11111111 11111111 11111111
+//	int b = -1;
+//	int c = a + b;
+//	//补码相加
+//
+//	return 0;
+//}
+
+//设计一个小程序来判断字节序是什么
+//int main()
+//{
+//	int a = 1;
+//	char* p = (char*)&a;
+//	if (*p != 1)
+//		printf("大端\n");
+//	else
+//		printf("小端\n");
+//	
+//	return 0;
+//}
+
+//int check_sys()
+//{
+//	int a = 1;
+//	char* p = (char*)&a;
+//	if (*p == 1)
+//		return 1;
+//	else
+//		return 0;
+//}
+//优化1 
+//int check_sys()
+//{
+//	int a = 1;
+//	char* p = (char*)&a;
+//	return *p;
+//}
+
+int check_sys()
+{
+	int a = 1;
+	char* p = (char*)&a;
+	return *(char*)&a;
+}
+
+int main()
+{
+	int a = 1;
+	int ret = 0;
+	ret = check_sys();
+	//ret=1，为小端
+	//ret！=0，为大端
+	if (ret==1)
+		printf("小端\n");
+	else
+		printf("大端\n");
+
+	return 0;
+}
