@@ -1,0 +1,87 @@
+#define _CRT_SECURE_NO_WARNINGS 1
+#include <stdio.h>
+
+//void test(int arr[])
+//{
+//	printf("%d\n", sizeof(arr) / sizeof(arr[0]));
+//}
+//
+//int main()
+//{
+//	int arr[10] = { 0 };
+//	test(arr);
+//	return 0;
+//}
+//
+//int main()
+//{ 
+//	const char* p = "abcdef";//常量字符串不能改
+//	//*p = 'W';
+//
+//	printf("%s\n", p);//%s与%p同，后面放的的地址
+//	printf("%c\n", *p);
+//	return 0;
+//}
+
+//int main()
+//{
+//	char str1[] = "hello bit.";
+//	char str2[] = "hello bit.";
+//	const char* str3 = "hello bit.";
+//	const char* str4 = "hello bit.";
+//	if (str1 == str2)
+//		printf("str1 and str2 are same\n");
+//	else
+//		printf("str1 and str2 are not same\n");
+//
+//	//相同的常量字符串则存放的地址是相同的
+//	if (str3 == str4)
+//		printf("str3 and str4 are same\n");
+//	else
+//		printf("str3 and str4 are not same\n");
+//
+//	return 0;
+//}
+
+//指针数组，是数组，用来存放指针的
+
+//int main()
+//{
+//	int arr[10] = { 0 };
+//	char ch[5] = { 0 };
+//	int* parr[4];//存放整形指针的数组 -指针数组
+//	char* arr[4];//存放字符指针的数组 -指针数组
+//
+//	return 0;
+//}
+//int main()
+//{
+//	int a = 0;
+//	int b = 0;
+//	int c = 0;
+//	int d = 0;
+//	int* arr[4] = { &a,&b,&c,&d };
+//
+//	return 0;
+//}
+
+//指针数组的用法
+//int main()
+//{
+//	int i = 0;
+//	int j = 0;
+//	int arr1[5] = { 1,2,3,4,5 };
+//	int arr2[5] = { 2,3,4,5,6 };
+//	int arr3[5] = { 3,4,5,6,7 };
+//	int* prr[3] = { arr1,arr2,arr3 };
+//	for (i = 0; i < 3; i++)
+//	{
+//		for(j=0;j<5;j++)
+//		{
+//			printf("%d ", * (prr[i] + j));
+//		}
+//		printf("\n");
+//	}
+//	return 0;
+//}
+
