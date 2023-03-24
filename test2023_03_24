@@ -1,0 +1,49 @@
+#define _CRT_SECURE_NO_WARNINGS 1
+#include <stdio.h>
+
+/*
+int main()
+{
+	//字符指针
+	char ch = 'w';
+	char* p = &ch;
+	const char* p2 = "abcdef";
+	//指针数组
+	int* arr[10];
+	//数组指针
+	int arr2[5];
+	int(*pa)[5] = &arr2;//取出数组的地址，数组里每个元素是整形
+	return 0;
+}
+*/
+
+/*
+void test(int arr[])//ok
+{}
+void test(int arr[10])//ok
+{}
+void test(int* arr)//ok
+{}
+void test2(int* arr[20])//ok
+{}
+void test2(int** arr)//ok
+{}
+int main()
+{
+	int arr[10] = { 0 };
+	int* arr2[20] = { 0 };
+	test(arr);
+	test2(arr2);
+}
+*/
+
+void test(int arr[3][5]){}
+void test1(int arr[][5]){}
+int main()
+{
+	int arr[3][5] = { 0 };
+	test(arr);
+	test1(arr);
+
+	return 0;
+}
