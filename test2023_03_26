@@ -195,3 +195,60 @@ int main()
 	
 	return 0;
 }
+
+void calc(int (*pf)(int,int))
+{
+	int x = 0;
+	int y = 0;
+	printf("请输入两个参数:>");
+	scanf("%d,%d", &x, &y);
+	printf("%d\n", pf(x, y));
+}
+
+
+int main()
+{
+	int input = 0;
+	do
+	{
+		menu();
+		printf("请输入:>");
+		scanf("%d", &input);
+
+		switch (input)
+		{
+		case 1:
+		{
+			calc(Add);
+			break;
+		}
+		case 2:
+		{
+			calc(Sub);
+			break;
+		}
+		case 3:
+		{
+			calc(Mul);
+			break;
+		}
+		case 4:
+		{
+			calc(Div);
+			break;
+		}
+		case 0:
+		{
+			printf("退出\n");
+			break;
+		}
+		default:
+		{
+			printf("选择错误\n");
+			break;
+		}
+		}
+	} while (input);
+}
+
+
