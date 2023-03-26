@@ -1,0 +1,197 @@
+#define _CRT_SECURE_NO_WARNINGS 1
+
+#include <stdio.h>
+
+//void print(char* str)
+//{
+//	printf("%s\n", str);
+//}
+//int main()
+//{
+//	void (*p)(char*) = print;
+//	(*p)("hello world");
+//	return 0;
+//}
+
+//signal 是一个函数指针
+//signal函数的参数有2个，第一个是int，第二个是函数指针，该函数指针指向的函数的参数是int，返回类型是void
+//signal函数的返回类型也是一个函数指针：该函数指针指向的参数
+/*
+typedef void(*pfun_t)(int);
+void (*signal(int, void(*)(int)))(int)
+signal(int, void(*)(int))
+pfun_t signal(int, pfun_t);
+*/
+/*
+int Add(int x, int y)
+{
+	return x + y;
+}
+int main()
+{
+	int a = 10;
+	int b = 20;
+	int (*p)(int, int) = Add;
+	//*号可以理解为就是一个摆设
+	printf("%d\n", (*p)(2, 3));
+	printf("%d\n", (**p)(2, 3));
+	printf("%d\n", Add(2, 3));
+}*/
+/*
+int Add(int x, int y)
+{
+	return x + y;
+}
+int Sub(int x, int y)
+{
+	return x - y;
+}
+int Mul(int x, int y)
+{
+	return x * y;
+}
+
+int Div(int x, int y)
+{
+	return x / y;
+}
+int main()
+{
+	int* arr[5];//指针数组
+	int (*p)(int, int) = Add;
+	//函数指针的数组
+	int(* pa[4])(int, int) = { Add,Sub,Mul,Div };
+	int i = 0;
+	for (i = 0; i < 4; i++)
+	{
+		printf("%d\n", pa[i](2, 3));
+	}
+	return 0;
+}*/
+/*
+char* my_strcpy(char* dest, const char* src)
+{
+
+}
+int main()
+{
+	//写一个函数指针pf,能够指向my_strcpy
+	char* (*pf)(char*, const char*) = my_strcpy;
+	//写一个函数指针数组pfArr,能够存放4个my_trlen函数的地址
+	char* (*pfArr[4])(char*, const char*) = { my_strcpy,my_strcpy,my_strcpy,my_strcpy };
+
+	return 0;
+}*/
+
+//计算器
+void menu()
+{
+	printf("***********************************\n");
+	printf("******1.Add        2.Sub***********\n");
+	printf("******3.Mul        4.Div***********\n");
+	printf("*******      0.exit      **********\n");
+	printf("***********************************\n");
+}
+
+int Add(int x, int y)
+{
+	return x + y;
+}
+int Sub(int x, int y)
+{
+	return x - y;
+}
+int Mul(int x, int y)
+{
+	return x * y;
+}
+int Div(int x, int y)
+{
+	return x / y;
+}
+/*
+int main()
+{
+	int input = 0;
+	int x = 0;
+	int y = 0;
+
+	do
+	{
+		menu();
+		printf("请输入:>");
+		scanf("%d", &input);
+		
+		switch (input)
+		{
+		case 1:
+		{
+			printf("请输入两个参数:>");
+			scanf("%d,%d", &x, &y);
+			printf("%d\n", Add(x, y));
+			break; 
+		}
+		case 2:
+		{
+			printf("请输入两个参数:>");
+			scanf("%d,%d", &x, &y);
+			printf("%d\n", Sub(x, y));
+			break;
+		}
+		case 3:
+		{
+			printf("请输入两个参数:>");
+			scanf("%d,%d", &x, &y);
+			printf("%d\n", Mul(x, y));
+			break; 
+		}
+		case 4:
+		{
+			printf("请输入两个参数:>");
+			scanf("%d,%d", &x, &y);
+			printf("%d\n", Div(x, y));
+			break; 
+		}
+		case 0:
+		{
+			printf("退出\n");
+			break;
+		}
+		default:
+		{
+			printf("选择错误\n");
+			break; 
+		}
+		}
+	} while (input);
+}
+*/
+
+int main()
+{
+	int input = 0;
+	int x = 0;
+	int y = 0;
+	//函数指针数组
+	int (*pfarr[])(int, int) = { 0,Add,Sub,Mul,Div };
+	do
+	{
+		menu();
+		printf("请输入:>");
+		scanf("%d", &input);
+		if (input >= 1 && input <= 4)
+		{
+			printf("请输入两个参数:>");
+			scanf("%d,%d", &x, &y);
+			printf("%d\n", pfarr[input](x, y));
+		}
+		else if (input == 0)
+		{
+			printf("退出\n");
+		}
+		else
+			printf("输入错误\n");
+	} while (input);
+	
+	return 0;
+}
