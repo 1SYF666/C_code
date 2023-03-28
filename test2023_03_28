@@ -86,4 +86,118 @@ int main()
 	return 0;
 }
 
+#define _CRT_SECURE_NO_WARNINGS 1
+
+#include <stdio.h>
+#include <string.h>
+/*
+int main()
+{
+	//一维数组
+	int a[] = { 1,2,3,4 };
+	printf("%d\n", sizeof(a));			//4*4=16
+	//数组名是首元素的地址，但是有两个例外，
+	//1.sizeof(数组名)这里的数组名表示整个数组
+	//2.&数组名-数组名表示整个数组
+	//除此之外所有的数组名都是首元素地址
+	printf("%d\n", sizeof(a + 0));		//a在这里表示是首元素地址，a+0还是首元素地址
+	printf("%d\n", sizeof(*a));			//a在这里表示是首元素地址,*a找到首元素，而首元素所占4个字节
+	printf("%d\n", sizeof(a + 1));		//a在这里表示是首元素地址，a+1还是第二个元素地址
+	printf("%d\n", sizeof(a[1]));		//4
+	printf("%d\n", sizeof(&a));			//&a是数组的地址，但是地址的大小就是4个或8个字节
+	printf("%d\n", sizeof(*&a));	//16，&a是数组的地址，解引用访问的是数组
+	//&a是数组的地址
+	//&a+1是跳过一个数组，但是
+	//还是一个地址，地址放到sizeof里面就是4个或8个字节
+	printf("%d\n", sizeof(&a + 1));			
+	printf("%d\n", sizeof(&a[0]));		//4或8
+	printf("%d\n", sizeof(&a[0] + 1));	//第二个元素的地址，4或者8
+	//字符数组
+	char arr[] = { 'a','b','c','d','e','f' };
+	printf("%d\n", sizeof(arr));		//6
+	printf("%d\n", sizeof(arr + 0));	//arr这里表示首元素地址，arr+0也表示地址，故结果是4字节或者8字节
+	printf("%d\n", sizeof(*arr));		//1
+	printf("%d\n", sizeof(arr[1]));		//1
+	printf("%d\n", sizeof(&arr));		//4或8
+	printf("%d\n", sizeof(&arr + 1));	//4或者8
+	printf("%d\n", sizeof(&arr[0] + 1));//4或者8
+	//由于后面里面放的是什么也不清楚，故是随机值
+	printf("%d\n", strlen(arr));		//arr是首元素地址，从首元素开始数
+	printf("%d\n", strlen(arr + 0));	//随机值
+	//*arr是首元素哎，相当于把首元素传给strlen,就把‘a’--97,即从地址97处开始数
+	//printf("%d\n", strlen(*arr));		//err
+	//printf("%d\n", strlen(arr[1]));		//err
+	printf("%d\n", strlen(&arr));		//随机值
+	printf("%d\n", strlen(&arr + 1));	//&arr + 1表示跳过该数组长度，随机值-6
+	printf("%d\n", strlen(&arr[0] + 1));//随机值-1
+	return 0;
+}*/
+
+/*
+int mian()
+{
+	char arr[] = "abcdef";
+	//sizeof(arr)计算的是数组的大小，单位是字节
+	printf("%d\n", sizeof(arr));			//7,字符串后面还有一个\0
+	printf("%d\n", sizeof(arr + 0));		//表示地址，4或者8
+	printf("%d\n", sizeof(*arr));			//首元素，1个字节
+	printf("%d\n", sizeof(arr[1]));			//1个字节
+	printf("%d\n", sizeof(&arr));			//数组的地址，4或者8
+	printf("%d\n", sizeof(&arr + 1));		//4或者8
+	printf("%d\n", sizeof(&arr[0] + 1));	//4或者8
+	//strlen求的长度不包括\0，单位是字节
+	printf("%d\n", strlen(arr));			//首元素地址，从首元素开始数，一共6个字节
+	printf("%d\n", strlen(arr + 0));		//arr + 0，arr是数组名，表示首元素地址，6
+	//printf("%d\n", strlen(*arr));			//err
+	//printf("%d\n", strlen(arr[1]));			//err
+	printf("%d\n", strlen(&arr));			//&arr表示整个数组的地址，从该地址开始数，故6个字节
+	printf("%d\n", strlen(&arr + 1));		//随机值
+	printf("%d\n", strlen(&arr[0] + 1));	//从第二个开始数,5个字节
+	return 0;
+}*/
+/*
+int main()
+{
+	char* p = "abcdef";						//常量字符串的地址放到了指针p里,即是首元素a的地址放进去的
+	printf("%d\n", sizeof(p));				//p里放的地址，4或者8
+	printf("%d\n", sizeof(p + 1));			//p+1计算到的是字符b的地址，结果是4或者8
+	printf("%d\n", sizeof(*p));				//*p是字符a,结果是1个字节
+	//int arr[10]; arr[0]==*(arr+0),  p[0]==*(p+0)==‘a’
+	printf("%d\n", sizeof(p[0]));			//p[0]表示字符a，故1个字节
+	printf("%d\n", sizeof(&p));				//4或者8，即取出了p的地址
+	printf("%d\n", sizeof(&p + 1));			//4或者8，即取出了p的地址
+	printf("%d\n", sizeof(&p[0] + 1));		//先取出的是‘a’的地址，再加一个字节是‘b’的地址	
+	printf("%d\n", strlen(p));				//6
+	printf("%d\n", strlen(p + 1));			//5
+	printf("%d\n", strlen(*p));//err,从97当作地址开始数，会报错
+	printf("%d\n", strlen(p[0]));//err
+	//因为传给strlen的是p的地址，所以从此地址处开始数，
+	//而p里放的是a的地址（0x00665544），比如小端存储，44 55 66 00,这里数是3
+	printf("%d\n", strlen(&p));				//随机值
+	printf("%d\n", strlen(&p + 1));			//随机值&p与&p+1中间正好跳过了p这个单元
+	printf("%d\n", strlen(&p[0] + 1));		//从b的地址开始数，一共有5个
+	return 0;
+}*/
+
+int main()
+{
+	//二维数组
+	int a[3][4] = { 0 };
+	printf("%d\n", sizeof(a));
+	printf("%d\n", sizeof(a[0][0]));
+	printf("%d\n", sizeof(a[0]));
+	printf("%d\n", sizeof(a[0] + 1));
+	printf("%d\n", sizeof(*(a[0] + 1)));
+	printf("%d\n", sizeof(a + 1));
+	printf("%d\n", sizeof(*(a + 1)));
+	printf("%d\n", sizeof(&a[0] + 1));
+	printf("%d\n", sizeof(*(&a[0] + 1)));
+	printf("%d\n", sizeof(*a));
+	printf("%d\n", sizeof(a[3]));
+	return 0;
+}
+
+
+
+
 
