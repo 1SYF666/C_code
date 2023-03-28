@@ -1,4 +1,33 @@
-
+#include <stdio.h>
+struct stu
+{
+	//char* name;
+	char name[20];
+	int age;
+};
+int cmp_int(const void* e1, const void* e2)
+{
+	//比较两个整型值的函数
+	return *(int*)e1 - *(int*)e2;
+}
+int cmp_float(const void* e1, const void* e2)
+{
+	//比较两个整型值的函数
+	if (*(float*)e1 < *(float*)e2)
+		return -1;
+	else if (*(float*)e1 == *(float*)e2)
+		return 0;
+	else
+		return 1;
+}
+int cmp_stu_by_age(const void* e1, const void* e2)
+{
+	return ((struct stu*)e1)->age - ((struct stu*)e2)->age;
+}
+int cmp_stu_by_name(const void* e1, const void* e2)
+{
+	return strcmp(((struct stu*)e1)->name, ((struct stu*)e2)->name);
+}
 void swap1(char* buf1, char* buf2,int width)
 {
 	int i = 0;
