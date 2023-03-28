@@ -135,13 +135,63 @@ void test4()
 }
 
 
+void swap1(char* buf1, char* buf2,int width)
+{
+	int i = 0;
+	for (i = 0; i < width; i++)
+	{
+		char temp = *buf1;
+		*buf1 = *buf2;
+		*buf2 = temp;
+		buf1++;
+		buf2++;
+	}
+
+}
+void bubble_qsort(void* base, int num, int width, int(* compare)(const void* elem1, const void* elem2))
+{
+	int i = 0;
+	int j = 0;
+	int temp = 0;
+	//行数
+	for (i = 0; i <  num - 1; i++)
+	{
+		//趟数
+		for (j = 0; j < num - 1 - i; j++)
+		{
+			if((compare((char*)base + j * width, (char*)base + (j + 1) * width))>0)
+				swap1((char*)base + j * width, (char*)base + (j + 1) * width,width);
+		}
+	}
+
+
+}
+
+void test5()
+{
+	struct stu s[3] = { {"zhangsan",20},{"lisi",30},{"wangwu",10} };
+	int sz = sizeof(s) / sizeof(s[0]);
+	bubble_qsort(s, sz, sizeof(s[0]), cmp_stu_by_age);
+	int i = 0;
+	for (i = 0; i < sz; i++)
+	{
+		printf("%s	", s[i].name);
+		printf("%d\n", s[i].age);
+	}
+}
+
+
+
 int main()
 {
 	//bubble_sort(arr, sz);
 	//test1();
 	//test2();
 	test3();
+	printf("****************\n");
 	test4();
+	printf("****************\n");
+	test5();
 	return 0;
 }
 
