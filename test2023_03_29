@@ -3,7 +3,6 @@
 #include <stdio.h>
 #include <string.h>
 /*
-
 int main()
 {
 	//二维数组
@@ -32,3 +31,82 @@ int main()
 	printf("%d\n", sizeof(a[3]));			//第四行数组，因此就是 4 * 4 = 16 个字节
 	return 0;
 }
+*/
+
+
+//写代码有三种境界
+//看代码是代码
+//看代码是内存
+//看代码是代码
+
+/*
+int main()
+{
+	int a[5] = { 1, 2, 3, 4, 5 };
+	int* ptr = (int*)(&a + 1);
+	printf("%d,%d", *(a + 1), *(ptr - 1));
+	return 0;
+}
+*/
+/*
+struct Test
+{
+	int Num;
+	char* pcName;
+	short sDate;
+	char cha[2];
+	short sBa[4];
+}*p;
+//假设p 的值为0x100000。 如下表表达式的值分别为多少？
+//已知，结构体Test类型的变量大小是20个字节
+int main()
+{
+	p = (struct Test*)0x100000;
+	//p+1相当于跳过一个结构体
+	printf("%p\n", p + 0x1);					//0x100000+0x000014
+	printf("%p\n", (unsigned long)p + 0x1);		//p一开始存放的是0x100000。但是呢，经过（unsigned long）转化为整数了1,048,576，然后再加1
+	printf("%p\n", (unsigned int*)p + 0x1);		//p一开始存放的是0x100000。但是呢，经过（unsigned long）转化为无符号的整型指针，加一表示加一个整型字节
+	//a+1这里1加的是多少个字节取决a是什么类型
+	//a+1这里1加的是多少个字节取决a是什么类型
+	return 0;
+}
+*/
+/*
+int main()
+{
+	//假设a的地址是0x00 00 00 01
+	//a的单元里放的是：01 00 00 00 02 00 00 00 03 00 00 00 04 00 00 00(小端存储)
+	//
+	int a[4] = { 1, 2, 3, 4 };
+	int* ptr1 = (int*)(&a + 1);
+	int* ptr2 = (int*)((int)a + 1);			//这里a是首元素地址，再转化为整型，再加1,（5+1=6），然后再转化为整型地址，解引用后读取的4个字节内容
+	printf("%x,%x", ptr1[-1], *ptr2);		//用16进制打印
+	return 0;
+}
+*/
+/*
+int main()
+{
+	//这里用的是逗号表达式
+	int a[3][2] = { (0, 1), (2, 3), (4, 5) };
+	int* p;
+	p = a[0];
+	printf("%d", p[0]);		//p[0] == *(p+0)
+	return 0;
+}
+*/
+
+//太难
+int main()
+{
+	int a[5][5];
+	int(*p)[4];
+	p = a;			//int(*)[] ------ int(*)[5]
+	printf("%p,%d\n", &p[4][2] - &a[4][2], &p[4][2] - &a[4][2]);
+	return 0;
+}
+
+
+
+
+
