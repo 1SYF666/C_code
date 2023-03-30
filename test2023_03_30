@@ -32,8 +32,7 @@ int main()
 	pa++;
 	printf("%s\n", *pa);
 	return 0;
-}
-*/
+}*/
 /*
 //太难
 int main()
@@ -111,3 +110,62 @@ int main()
 	return 0;
 }
 */
+//
+//int main()
+//{
+//	char* p1 = "abcdef";	//长度是6
+//	char* p2 = "sqwer";		//长度是5	
+//	int ret=strcmp(p1, p2);
+//	printf("%d\n", ret);
+//	return 0;
+//}
+
+//int my_strcmp(const char* str1,const char* str2)
+//{
+//	assert(str1 && str2);
+//	while (*str1==*str2)
+//	{
+//		if (*str1 == '\0')
+//			return 0;	//等于0
+//		str1++;
+//		str2++;
+//	}
+//	if (*str1 > *str2)
+//		return 1;		//大于
+//	else if (*str1 < *str2)
+//		return -1;		//小于
+//}
+/*
+int my_strcmp(const char* str1,const char* str2)
+{
+	assert(str1 && str2);
+	while (*str1==*str2)
+	{
+		if (*str1 == '\0')
+			return 0;	//等于0
+		str1++;
+		str2++;
+	}
+	return (*str1 - *str2);	
+}
+int main()
+{
+	char* p1 = "abcdef";
+	char* p2 = "abqwe";
+	int ret = my_strcmp(p1, p2);
+	printf("%d", ret);
+	return 0;
+}*/
+
+int main()
+{
+	char arr1[5] = { "abc" };
+	char arr2[] = "hello bit";
+	//strcpy的脾气就是拷贝‘\0’之前的字符，不管拷贝地址能不能放下
+	//一个优化的拷贝函数是strncpy，多了一个参数count
+	//strcpy(arr1, arr2);		//超出了栈空间
+	//printf("%s\n", arr1);		
+	return 0;
+}
+
+
