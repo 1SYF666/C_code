@@ -1,0 +1,64 @@
+#define _CRT_SECURE_NO_WARNINGS 1
+#include<string.h>
+#include<stdio.h>
+#include<assert.h>
+
+
+struct s
+{
+	char name[20];
+	int age;
+};
+//size_t 单位是字节
+void* my_memcpy(void* dest, const void* src, size_t num)
+{
+	void* ret = dest;
+	assert(dest != NULL);
+	assert(src != NULL);
+	while (num--)
+	{
+		*(char*)dest = *(char*)src;
+		++(char*)dest;
+		++(char*)src;
+	}
+	return ret;
+}
+
+void* my_memmove(void* dest, const void* src, size_t num)
+{
+
+}
+//C语言标准：
+//memcpy 只要处理不重叠的内存拷贝就可以
+//memmove 处理重叠内存的拷贝
+int main()
+{
+	//把1，2，3，4，5转化到3，4，5，6，7所在的位置
+	int arr[] = { 1,2,3,4,5,6,7,8,9,10 };
+	int i = 0;
+	//my_memcpy(arr+2,arr,20);
+	//memcpy(arr+2,arr,20);
+	//memmove(arr + 2, arr, 20);//处理内存重叠的情况
+	my_memmove(arr + 2, arr, 20);//处理内存重叠的情况
+	for (i = 0; i < 10; i++)
+	{
+		printf("%d ", arr[i]);//结果出现问题 1 2 1 2 1 2 1 8 9 10
+	}
+	return 0;
+}
+//int main()
+//{
+//	int arr1[] = { 1,2,3,4,5 };
+//	int arr2[5] = { 0 };
+//	struct s arr3[] = { {"张三",20},{"李四",30}};
+//	struct s arr4[3] = { 0 };
+//	//strcpy局限性在只能拷贝字符串
+//	//strcpy(arr2, arr1);
+//	//memcpy(arr2, arr1, sizeof(arr1));
+//	//memcpy(arr4, arr3, sizeof(arr3));
+//	my_memcpy(arr4, arr3, sizeof(arr3));
+//	return 0;
+//}
+
+//void* --通用性指针，无类型的指针
+//void* memcpy(void* destination, const void* source, size_t num);
