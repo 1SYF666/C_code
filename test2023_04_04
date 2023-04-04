@@ -1,0 +1,115 @@
+#define _CRT_SECURE_NO_WARNINGS 1
+#include<stdio.h>
+
+//复杂类型——自定义类型：结构体、枚举、联合体
+
+
+//声明一个结构体类型
+//声明一个学生类型，是想过学生类型来创建学生变量（对象）
+//描述学生：属性+名字+电话+性别+年龄
+struct Stu
+{
+	char name[20];
+	char tele[12];
+	char sex[10];
+	int age;
+}s4,s5,s6;
+struct Stu s3;
+//上述创建的是全局变量
+//匿名结构体类型
+struct
+{
+	int a;
+	char b;
+	float c;
+}x;
+
+struct
+{
+	int a;
+	char b;
+	float c;
+}a[20], * p;
+//数据结构：数据在内存中存储的结构
+
+//struct Node
+//{
+//	int data;
+//	struct Node n;
+//};错误声明
+
+//struct Node
+//{
+//	//结构体自引用
+//	int data;				//数据域
+//	struct Node* next;		//指针域
+//};
+//
+//int main()
+//{
+//	//int num;
+//	//char c;
+//	////创建的局部结构体变量
+//	//struct Stu s1;
+//	//struct Stu s2;
+//	//sizeof(struct Node);
+//
+//	return 0;
+//}
+
+//typedef struct
+//{
+//	int data;
+//	Node* next;
+//}Node;
+//这样写代码，可行否？不行
+//解决方案：
+//typedef struct Node
+//{
+//	int data;
+//	struct Node* next;
+//}Node;
+//
+//struct T
+//{
+//	double x;
+//	double weight;
+//};
+//struct S
+//{
+//	char c;
+//	struct T st;
+//	int a;
+//	double d;
+//	char arr[20];
+//};
+//int main()
+//{
+//	struct S s = { 'c',{55.4,80.0},100,3.14,"hello bit" };
+//	printf("%c %d %lf %s\n", s.c, s.a, s.d, s.arr);
+//	printf("%lf\n", s.st.weight);
+//	return 0;
+//}
+
+struct S1
+{
+	char c1;
+	int a;
+	char c2;
+};
+struct S2
+{
+	char c1;
+	char c2;
+	int a;
+};
+
+int main()
+{
+	struct S1 s1 = { 0 };
+	printf("%d\n", sizeof(s1));
+	struct S2 s2 = { 0 };
+	printf("%d\n", sizeof(s2));
+
+	return 0;
+}
