@@ -1,0 +1,115 @@
+#define _CRT_SECURE_NO_WARNINGS 1
+#include <stdio.h>
+
+
+//有N个学生，每个学生的信息包括学号，姓名，四门课的成绩，
+//从键盘上输入N个学生的信息，要求输出总平均成绩最高的学生信息
+//包括学号、性别、姓名和平均成绩
+
+#define N 3
+struct student
+{
+	long stu_num;	//学号
+	char name[20];	//姓名
+	char sex[20];	//性别
+	int score[4];   //四门课的成绩
+	float averge;
+};
+
+int main()
+{
+	int i = 0;
+	int j = 0;
+	int x = 1;
+	int index;
+	float max;
+	
+	struct student s[N];  //四个学生
+	
+	//输入四个学生的信息
+	printf("请输入四位学生的信息(学号，姓名，性别，四门课成绩)如下：\n");
+	for (i = 0; i < N; i++)
+	{
+		
+		//基本信息
+		printf("%d号学生的信息:",x+i);
+		scanf("%ld %s %s", &s[i].stu_num, &s[i].name, &s[i].sex);
+		//四门课成绩
+		printf("%d号学生的成绩:", x+i);
+		for (j = 0; j < 4; j++)
+		{
+			scanf("%d", &s[i].score[j]);
+		}
+		float sum = 0;
+		//统计学生平均成绩
+		for (j = 0; j < 4; j++)
+		{
+			sum += s[i].score[j];
+		}
+		s[i].averge = sum / 4.0;
+
+
+	}
+
+
+	//比较成绩高低
+	max = s[0].averge;
+	index = 0;
+	for (i = 1; i < N; i++)
+	{
+		if (max < s[i].averge)
+		{
+			max = s[i].averge;
+			index = i;
+		}
+	}
+	
+	//输出最好学生成绩信息
+	printf("总平均成绩最高的学生信息是学号：%ld,姓名：%s，性别：%s,平均成绩：%4.1f\n", s[index].stu_num, s[index].name, s[index].sex, s[index].averge);
+
+	return 0;
+}
+
+
+
+//int main()
+//{
+//	int i = 3;
+//	int b=i---i;
+//	printf("%d\n", b);
+//
+//	return 0;
+//}
+//
+//int main()
+//{
+//	int x;
+//	char y;
+//	char z[20];
+//	scanf("% d % c % s", &x, &y, z);
+//	scanf("% d % c % s", &x, &y, &z);
+//	return 0;
+//}
+
+//int main()
+//{
+//	char c;
+//	while ((c = getchar()) != '?')
+//		putchar(--c);
+//	return 0;
+////}
+//
+//int main()
+//{
+//	int x = 0;
+//	int y = 0;
+//	for (x = 0, y = 0; (y != 123) || (x < 4); x++)
+//	{
+//		printf("shishi\n");
+//	}
+//	return 0;
+//}
+
+
+
+
