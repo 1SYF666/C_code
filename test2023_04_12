@@ -1,0 +1,78 @@
+#define _CRT_SECURE_NO_WARNINGS 1
+
+#include <stdio.h>
+
+//struct Node
+//{
+//	int data;
+//	//struct Node next;不能自己调用自己，因为无法确实大小
+//	struct Node* next;//指针可以确定大小
+//};
+
+//typedef struct Node
+//{
+//	int data;
+//	//struct Node next;不能自己调用自己，因为无法确实大小
+//	struct Node* next;//指针可以确定大小
+//}Node;
+//
+//int main()
+//{
+//	struct Node n1;
+//	Node n2;
+//	return 0;
+//}
+
+//不要匿名重类型定义，容易出错
+/*
+typedef struct 
+{
+	int data;
+	//struct Node next;不能自己调用自己，因为无法确实大小
+	struct Node* next;//指针可以确定大小
+}Node;				//Node为类型名
+*/
+//
+//int main()
+//{
+//	struct Node n1;
+//	Node n2;
+//	return 0;
+//}
+
+//struct T
+//{
+//	double weight;
+//	short age;
+//};
+//struct S
+//{
+//	char c;
+//	int a;
+//	struct T t;
+//	double d;
+//	char arr[20];
+//};
+//
+//int main()
+//{
+//	//struct S s = { 'c',100,3.14,"hello bit" };
+//	struct S s = { 'c',100,{55.6,30},3.14,"hello bit" };
+//	printf("%c %d %lf %s\n", s.c, s.a, s.d, s.arr);
+//	printf("%lf\n", s.t.weight);
+//	
+//	return 0;
+//}
+
+struct S
+{
+	double b;
+	char a;
+	int c;
+};
+
+int main()
+{
+	printf("%d\n", sizeof(struct S));
+	return 0;
+}
