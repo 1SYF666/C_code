@@ -1,0 +1,90 @@
+#define _CRT_SECURE_NO_WARNINGS 1
+#include<stdio.h>
+#include<stddef.h>
+
+//设置默认对齐数位4
+//内存对齐与修改
+//#pragma pack(4)
+//struct S
+//{
+//	char c1;		//1
+//	double d;		//8
+//};
+//
+//#pragma pack()//取消设置的默认对齐数，还原为默认
+//int main()
+//{
+//	struct S s;
+//	printf("%d\n", sizeof(s));
+//	return 0;
+//}
+
+//offsetof 宏的实现
+//struct S
+//{
+//	char c;
+//	int i;
+//	double d;
+//};
+//int main()
+//{
+//	//offsetof();
+//	printf("%d\n", offsetof(struct S,c));
+//	printf("%d\n", offsetof(struct S,i));
+//	printf("%d\n", offsetof(struct S,d));
+//	return 0;
+//}
+//结构体传参
+
+struct S
+{
+	char c;
+	int a;
+	double d;
+};
+//void Init(struct S tmp)
+//{
+//	tmp.a = 100;
+//	tmp.c = 'w';
+//	tmp.d = 3.14;
+//}
+//int main()
+//{
+//	struct S s = {0};
+//	Init(s);
+//	/*
+//	s.a = 100;
+//	s.c = 'w';
+//	s.d = 3.14;
+//	printf("%d\n", s.a);
+//	*/
+//	return 0;
+//}
+
+
+void Init(struct S* tmp)
+{
+	tmp->a = 100;
+	tmp->c = 'w';
+	tmp->d = 3.14;
+}
+//传参
+void Print1(struct S tmp)
+{
+	printf("%d %c %lf\n", tmp.a, tmp.c, tmp.d);
+}
+//传址
+void Print2(const struct S* tmp)
+{
+	printf("%d %c %lf\n", tmp->a, tmp->c, tmp->d);
+}
+int main()
+{
+	struct S s = { 0 };
+	Init(&s);
+	Print1(s);
+	Print2(&s);
+	printf("%d\n", s.a);
+	
+	return 0;
+}
