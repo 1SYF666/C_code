@@ -122,17 +122,46 @@ int main()
 }
 
 
+//传统的写法
+//int main()
+//{
+//	//int a = 0x11223344;
+//	//低地址------------------------高地址
+//	//
+//	//讨论一个数据放在内存中存放的字节的顺序
+//	int a = 1;
+//	if (*(char*)&a)
+//		printf("小端\n");
+//	else
+//		printf("大端\n");
+//
+//	return 0;
+//}
 
+//共用体创建方法
+int check_sys()
+{
+	union
+	{
+		char c;
+		int i;
+	}u;
 
+	u.i = 1;
+	return u.c;	
+}
 
+int main()
+{
+	int a = 1;
+	int ret = check_sys();
+	if (ret == 1)
+	{
+		printf("小端\n");
+	}
+	else
+		printf("大端\n");
 
-
-
-
-
-
-
-
-
-
+	return 0;
+}
 
