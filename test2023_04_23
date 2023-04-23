@@ -1,1 +1,76 @@
+#define _CRT_SECURE_NO_WARNINGS 1
+#include <stdio.h>
 
+//char* GetMemory(void)
+//{
+//	char p[] = "hello world";//p为局部变量,在栈区，只在此函数里面有效，出了这个函数里面内容就还给操作系统了
+//	return p;
+//}
+//void Test(void)
+//{
+//	char* str = NULL;
+//	str = GetMemory();//非法访问内存，Getmemory函数把地址赋给str时，这个函数就结束了，这个地址里放的内容就还给操作系统了。
+//	printf(str);
+//}
+//
+//int main()
+//{
+//	Test();
+//	return 0;
+//}
+
+//下面写法没有问题，因为malloc开辟的空间在    堆区    ，堆区的空间你不free，它依然存在
+//你把这个地址放到ptr里面，ptr变量销毁之前把这个地址交给了p变量，但是ptr指向的那块空间没有销毁
+//因此p指向这块空间，
+//int* test()
+//{
+//	int* ptr = malloc(100);//堆区,
+//	return ptr;
+//}
+//int main()
+//{
+//	int* p = test();
+//	return 0;
+//}
+
+//void GetMemory(char** p, int num)
+//{
+//	*p = (char*)malloc(num);
+//}
+//void Test(void)
+//{
+//	char* str = NULL;//栈区
+//	GetMemory(&str, 100);
+//	strcpy(str, "hello");
+//	printf(str);
+//	free(str);//不要忘记释放动态开辟的内存，导致内存的泄露
+//	str = NULL;
+//}
+//
+//int mian()
+//{
+//	Test();
+//	return 0;
+//}
+
+void Test(void)
+{
+	char* str = (char*)malloc(100);
+	strcpy(str, "hello");
+	free(str);  //free只是释放str指向的内存空间，但没有把str置为空指针NULL
+	/*
+	改进
+	str=NULL;
+	*/
+	if (str != NULL)
+	{
+		strcpy(str, "world");  //非法访问内存
+		printf(str);
+	}
+}
+
+int main()
+{
+	Test();
+	return 0;
+}
