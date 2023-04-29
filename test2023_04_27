@@ -25,3 +25,98 @@ int main()
 	return 0;
 }
 
+
+
+#define _CRT_SECURE_NO_WARNINGS 1
+#include <stdio.h>
+#include <errno.h>
+#include <string.h>
+/*
+int main()
+{
+	//打开文件test.txt
+	//相对路径
+	//..表示上一级路径
+	//.表示当前路径
+	// 相对路径写法
+	//fopen("test.txt", "r");
+	//FILE* fopen(const char* filename, const char* mode);
+	//绝对路径写法，这里test.txt位于当前路径下
+	//fopen("C:\\Users\\PC\Desktop\\C\code\\test2023_04_28\\test2023_04_28\\test.txt", "r");
+	FILE* pf = fopen("test.txt", "r");
+	if (pf == NULL)
+	{
+		printf("%s\n",strerror(errno));
+		return 0;
+	}
+	fclose(pf);
+	pf = NULL;
+
+	return 0;
+}
+*/
+//int main()
+//{
+//	//打开文件
+// 向文件里写东西，只文件输出流
+//	FILE* pfWrite = fopen("TXST.txt", "w");
+//	if(pfWrite==NULL)
+//	{
+//		printf("%s\n", strerror(errno));
+//		return 0;
+//	}
+//	//写文件
+//	fputc('H', pfWrite);
+//	fputc('e', pfWrite);
+//	fputc('l', pfWrite);
+//	fputc('l', pfWrite);
+//	fputc('o', pfWrite); 
+//	fputc(' ', pfWrite); 
+//	fputc('W', pfWrite); 
+//	fputc('o', pfWrite); 
+//	fputc('r', pfWrite); 
+//	fputc('l', pfWrite); 
+//	fputc('d', pfWrite); 
+//
+//	//关闭文件
+//	fclose(pfWrite);
+//	pfWrite = NULL;
+//	
+//	return 0;
+//}
+/*
+int main()
+{
+	int i = 0;
+	//打开文件
+	//打开的这个文件叫pfRead，pfRead是为了读而得到的，
+	//因此pfRead所指向的那个流就叫文件输入流，即使从文件里面读取信息
+	FILE* pfRead = fopen("TXST.txt", "r");  
+	if (pfRead == NULL)
+	{
+		printf("%s\n", strerror(errno));
+		return 0;
+	}
+	//读文件
+	for (i = 0; i < 11; i++)
+	{
+		printf("%c ", fgetc(pfRead));
+	}
+	//关闭文件
+	fclose(pfRead);
+	pfRead = NULL;
+
+	return 0;
+}
+*/
+//从键盘输入
+//输出到屏幕
+//
+int main()
+{
+	int c = fgetc(stdin);
+	fputc(c, stdout);
+	
+	return 0;
+}
+
