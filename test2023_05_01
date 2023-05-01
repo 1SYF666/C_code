@@ -1,0 +1,104 @@
+#define _CRT_SECURE_NO_WARNINGS 1
+#include <stdio.h>
+
+//int main()
+//{
+//	//从键盘上读取一行文本
+//	char buf[1024] = { 0 };
+//	//fgets(buf, 1024, stdin);//从键盘上读
+//	//fputs(buf, stdout);     //输出到屏幕上
+//	gets(buf);
+//	puts(buf);
+//	return 0;
+//}
+
+//
+//struct S
+//{
+//	int n;
+//	float score;
+//	char arr[10];
+//};
+
+//int main()
+//{
+//	struct S s = { 100,3.14,"bit" };
+//	FILE* pf = fopen("test.txt", "w");
+//	if (pf == NULL)
+//	{
+//		return 0;
+//	}
+//	//以格式化的形式输入到文件
+//	fprintf(pf, "%d %f %s", s.n, s.score, s.arr);
+//	////关闭文件
+//	//fclose(pf);
+//	//pf = NULL;
+//	//以格式化的形式从文件里输出
+//	fscanf(pf, "%d %f %s", &(s.n), &(s.score), s.arr);
+//	//最后在键盘上打印
+//	printf("%d %f %s", s.n, s.score, s.arr);
+//	//关闭文件
+//	fclose(pf);
+//	pf = NULL;
+//	return 0;
+//}
+
+//int main()
+//{
+//	struct S s = { 0 };
+//	fscanf(stdin, "%d %f %s", &(s.n), &(s.score), s.arr);
+//	fprintf(stdout, "%d %f %s", s.n, s.score, s.arr);
+//	return 0;
+//}
+
+
+//int main()
+//{
+//	struct S s = {100,3.14f,"abcedf"};
+//	struct S tmp = {0};
+//	
+//	char buf[1024] = { 0 };
+//	//输入一个字符串到字符数组里
+//	sprintf(buf, "%d %f %s", s.n, s.score, s.arr);
+//	printf("%s\n", buf);//打印到屏幕上
+//	//通过buf还原字符串
+//	sscanf(buf, "%d %f %s", &(tmp.n), &(tmp.score), tmp.arr);
+//	printf("%d %f %s",tmp.n,tmp.score,tmp.arr);//打印到屏幕上
+//	return 0;
+//}
+
+struct S
+{
+	char name[20];
+	int age;
+	double score;
+};
+//int main()
+//{
+//	struct S s = { "张三",20,55.6 };
+//	
+//	FILE* pf = fopen("test.txt", "wb");
+//
+//	if (pf == NULL)
+//		return 0;
+//	//以二进制的形式写入到文件里
+//	fwrite(&s, sizeof(struct S), 1, pf);
+//
+//	pf = NULL;
+//	return 0;
+//}
+
+int main()
+{
+	struct S tmp = { 0 };
+	//以二进制的形式读文件
+	FILE* pf1 = fopen("test.txt", "rb");
+	if (pf1 == NULL) return 0;
+	fread(&tmp, sizeof(struct S), 1, pf1);
+	//在屏幕上看看
+	printf("%s %d %lf", tmp.name, tmp.age, tmp.score);
+	fclose(pf1);
+	pf1 = NULL;
+	return 0;
+}
+
