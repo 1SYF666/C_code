@@ -45,4 +45,14 @@
 //	for (;;);
 //	return 0;
 //}
+#define quart(x) ((x)+(x))
+
+int main()
+{
+  int a=quart(5);
+  printf("%d\n",a);
+  return 0;
+}
+
+
 
