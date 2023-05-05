@@ -78,3 +78,64 @@ int main()
 	return 0;
 }
 
+//
+//int main()
+//{
+//	int a = 10;
+//	int b = 11;
+//	int max = MAX(a++, b++);
+//	//int max = ((a++) > (b++) ? (a++) : (b++));
+//	printf("%d\n", max);
+//	printf("%d\n", a);
+//	printf("%d\n", b);
+//
+//	return 0;
+//}
+
+
+//int MAX(int a,int b, int c)
+//{
+//	if (a > b)
+//	{
+//		if (a > c) return a;
+//		else return c;
+//	}
+//	else
+//	{
+//		if (a > c) return b;
+//		else if (b < c) return c;
+//		else return b;
+//	}
+//}
+
+//int max(int a, int b, int c)
+//{
+//    int max = a;  // 假设 a 为最大值
+//
+//    if (b > max) {  // 如果 b 大于当前最大值，则将其更新为最大值
+//        max = b;
+//    }
+//
+//    if (c > max) {  // 如果 c 大于当前最大值，则将其更新为最大值
+//        max = c;
+//    }
+//
+//    return max;
+//}
+//
+//int main()
+//{
+//	printf("%d\n", max(10, 200, 1));
+//	return 0;
+//}
+//
+
+//#define SIZEOF(type) sizeof(type)
+//
+//int main()
+//{
+//	int ret = SIZEOF(int);
+//	printf("%d\n", ret);
+//	return 0;
+//}
+
