@@ -54,5 +54,27 @@ int main()
   return 0;
 }
 
+/ 在宏中使用#号
+//#define PRINT(X) printf("the value of X is %d\n",X)
+#define PRINT(X) printf("the value of "#X" is %d\n",X)
 
+//int main()
+//{
+//	int a = 10;
+//	int b = 20;
+//	printf("hello world\n");
+//	printf("hello"" world\n");
+//	PRINT(a);
+//	PRINT(b);
+//
+//	return 0;
+//}
+
+#define CAT(X,Y) X##Y
+int main()
+{
+	int Class84 = 2023;
+	printf("%d\n", CAT(Class, 84));
+	return 0;
+}
 
