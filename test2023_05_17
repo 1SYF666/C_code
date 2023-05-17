@@ -1,0 +1,167 @@
+#define _CRT_SECURE_NO_WARNINGS 1
+
+
+#include <stdio.h>
+#include <ctime>
+#include <string>
+#include <iostream>
+#include <stdlib.h>
+typedef bool TYPE;
+
+int convert_string_to_array(std::string num1, std::string num2, TYPE*& A, TYPE*& B)
+{	
+	//判断是否一样长，补零
+	int zero_num = num1.length() - num2.length();
+	std::string* temp = NULL;
+	if (zero_num > 0)
+	{
+		temp = &num2;
+	}
+	else if (zero_num < 0)
+	{
+		temp = &num1;
+	}
+	for (int i = 0; i < abs(zero_num); i++)
+	{
+		*temp = "0" + *temp;
+	}
+	int length = num1.length();
+
+	A = new TYPE[length];
+	B = new TYPE[length];
+
+	for (int i = 0; i < length; i++)
+	{
+		A[i] = num1[length - 1 - i] - '0';
+		B[i] = num1[length - 1 - i] - '0';
+	}
+}
+
+//老规矩：所有cuda里面的函数首先要做的是把当前这个线程的ID来算出来
+//如何算呢？blockID乘以总的线程的数量，再加上当前的ID
+__global__ void full_adder << <blockNum, threadNum >> > (TYPE *num1, TYPE *num2, TYPE* result, TYPE* Ci0_, int startIdx, int length))
+{
+	//这里没有设grid，所以相对简单一点
+	int index = blockIdx.x * blockDim.x + threadIdx.x;
+	//如果说当前的线程的Id超过了 这轮需要的线程数，比如需要分配四个线程，实际上分配1万个，那么从4以后所有线程都不需要
+	if (index >= length)
+	{
+		return;
+	}
+	//Ci0_：表示上一组传进来的进位数，即这一组首个的进位数
+	//这一组不仅要算出结果来，还要更新进位符Ci0_; 用最后（只有全计算完才行）一个线程来更新
+	//比如4个线程，用a[3]来更新进位符
+	//这里有一个问题：4个线程传进来虽然是同步，但是各个线程运行可能有快慢之分，
+	//比如，a[3]已经计算完了，进位符也更新好了，但是a[2]还没计算完，就要使用已经更新好的进位符计算导致计算错误
+	//为了防止出现上面情况，要提前拷贝Ci0_
+	TYPE Ci0 = Ci0_[0];
+	TYPE Ci = 0;
+	//计算，把之前每一位都要用上
+	//比如第三位计算，要把之前每一位都要算上
+	//计算进位
+	for (int i = 0; i < index; i++)
+	{
+		//偏移量常用写法
+		//第一组：0、1、2、3——startIdx=0;
+		//第二组：4、...——startIdx=4
+		TYPE A = num1[i + startIdx];
+		TYPE B = num2[i + startIdx];
+		Ci = A & B;
+		Ci = ((A ^ B) & Ci0) | Ci;//进位传递信号，用来计算累加Ci，只给这一个线程服务
+		//比如你算第二位，之前的进位就应该是第一位的进位+本位算出来的进位，
+		//第一位的进位就是第0位的进位+本位计算出来的进位，
+		//累加下来第0位进位传给第1位，第1位传给第2位.......
+		Ci0 = Ci;
+	}
+
+	int i = index;
+	TYPE A = num1[i + startIdx];
+	TYPE B = num2[i + startIdx];
+	TYPE Si = A ^ B ^ Ci0;
+	
+	//当前这一位的结果：
+	result[index + startIdx] = Si;
+	
+	//如果当前计算的是最后一位的话，还有把这一组的进位传出去
+	if (index == length - 1)
+	{
+		Ci = A & B;
+		Ci = ((A ^ B) & Ci0) | Ci;
+		Ci0_[0] = Ci;//进位传出去
+	}
+}
+
+
+
+
+int main()
+{
+	std::string num1 = "10101";
+	std::string num2 = "1111";
+	//cuda不能传字符串，故先弄成数组
+	TYPE* ACpu;
+	TYPE* BCpu;
+
+	int length = convert_string_to_array(num1, num2, ACpu, BCpu);
+
+	//cuda
+	//转到gpu上去；
+
+	TYPE* AGpu;
+	
+	//分配空间
+	CudaMalloc((void**)&AGpu, length * sizeof(TYPE));
+	//拷贝
+	CudaMemcpy(AGpu, ACpu, length * sizeof(TYPE), cudaMemcpyHostToDevice);
+
+	TYPE* BGpu;
+	//分配空间
+	CudaMalloc((void**)&BGpu, length * sizeof(TYPE));
+	//拷贝
+	CudaMemcpy(BGpu, BCpu, length * sizeof(TYPE), cudaMemcpyHostToDevice);
+
+	//弄一个放结果的空间
+	TYPE* resultGpu;
+	//分配空间
+	CudaMalloc((void**)&resultGpu, length * sizeof(TYPE));
+	
+	//初始化这个进位
+	TYPE* CiCpu = new TYPE[1];
+	CiCpu = 0;
+
+	//开辟空间
+	TYPE* CiGpu;
+	cudaMalloc((void**)&CiCpu, 1 * sizeof(TYPE));
+	cudaMemcpy(CiCpu, CiGpu, 1 * sizeof(TYPE), cudaMemcpyDeviceToHost);
+
+	//开辟线程
+	int threadNum = 1;
+	int blockNum = 4;
+	int totalNum = threadNum * blockNum;//总线程
+	
+	//写一个循环
+	for (int i = 0; totalNum * i < length; i++)
+	{
+		//后面两个参数
+		//totalNum：从第几位开始，如第一次循环是从第0位开始；第二次循环是从第4位开始
+		// min(length - totalNum * i, totalNum)：总长度是取剩下的长度（length - totalNum * i）和线程的最小值
+		//比如，长度为5，总线程是4，那第二次循环时不能用长度为4来算，应该用5-4=1来算
+		full_adder << <blockNum, threadNum >> > (AGpu, BGpu, resultGpu, CiGpu, totalNum * i, min(length - totalNum * i, totalNum));
+	}
+	
+	//计算完之后，拷贝到CPU的中读取
+	
+	//申请CPU的一个变量
+	TYPE* result = new TYPE[length];
+	cudaMemcpy(result, resultGpu, 1 * sizeof(TYPE), cudaMemcpyHostToDevice);
+
+	//打印
+	for (int i = 0; i < length; i++)
+	{
+		cout << result[length - 1 - i] << " ";
+	}
+	cout << endl;
+	return 0;
+}
+
+
