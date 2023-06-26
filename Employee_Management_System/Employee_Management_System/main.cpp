@@ -33,6 +33,20 @@ int main()
 			wm.Show_Emp();
 			break;
 		case 3: //删除职工
+			//测试
+		//{
+		//	int ret = wm.IsExist(5);
+		//	if (ret != -1)
+		//	{
+		//		cout << "职工存在" << endl;
+		//	}
+		//	else
+		//	{
+		//		cout << "职工不存在" << endl;
+		//	}
+		//	break;
+		//}
+			wm.Del_Emp();
 			break;
 		case 4: //修改职工
 			break;
