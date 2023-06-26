@@ -9,38 +9,39 @@ using namespace std;
 
 int main()
 {
-	//ÊµÀı»¯¹ÜÀíÕß¶ÔÏó
+	//å®ä¾‹åŒ–ç®¡ç†è€…å¯¹è±¡
 	WorkerManager wm;
 
 	int choice = 0;
 	while (true)
 	{
-		//µ÷ÓÃÕ¹Ê¾²Ëµ¥³ÉÔ±º¯Êı
+		//è°ƒç”¨å±•ç¤ºèœå•æˆå‘˜å‡½æ•°
 		wm.Show_Menu();
 
-		cout << "ÇëÊäÈëÄúµÄÑ¡Ôñ" << endl;
+		cout << "è¯·è¾“å…¥æ‚¨çš„é€‰æ‹©" << endl;
 		cin >> choice;
 		
 		switch (choice)
 		{
-		case 0: //ÍË³öÏµÍ³
+		case 0: //é€€å‡ºç³»ç»Ÿ
 			wm.ExitSystem();
 			break;
-		case 1: //Ôö¼ÓÖ°¹¤
+		case 1: //å¢åŠ èŒå·¥
 			wm.Add_Emp();
 			break;
-		case 2: //ÏÔÊ¾Ö°¹¤
+		case 2: //æ˜¾ç¤ºèŒå·¥
 			wm.Show_Emp();
 			break;
-		case 3: //É¾³ıÖ°¹¤
+		case 3: //åˆ é™¤èŒå·¥
+			wm.Del_Emp();
 			break;
-		case 4: //ĞŞ¸ÄÖ°¹¤
+		case 4: //ä¿®æ”¹èŒå·¥
 			break;
-		case 5: //²éÕÒÖ°¹¤
+		case 5: //æŸ¥æ‰¾èŒå·¥
 			break;
-		case 6: //ÅÅĞòÖ°¹¤
+		case 6: //æ’åºèŒå·¥
 			break;
-		case 7: //Çå¿ÕÎÄµµ
+		case 7: //æ¸…ç©ºæ–‡æ¡£
 			break;
 		
 		default:
@@ -55,21 +56,21 @@ int main()
 	return 0;
 }
 
-//²âÊÔ´úÂë
+//æµ‹è¯•ä»£ç 
 int main1()
 {
-	//²âÊÔ´úÂë
+	//æµ‹è¯•ä»£ç 
 	Worker* worker = NULL;
 	
-	worker = new Employee(1, "ÕÅÈı", 1);
+	worker = new Employee(1, "å¼ ä¸‰", 1);
 	worker->showInfo();
 	delete worker;
 
-	worker = new Manager(2, "ÀîËÄ", 2);
+	worker = new Manager(2, "æå››", 2);
 	worker->showInfo();
 	delete worker;
 
-	worker = new Boss(3, "ÍõÎå", 3);
+	worker = new Boss(3, "ç‹äº”", 3);
 	worker->showInfo();
 	delete worker;
 	
