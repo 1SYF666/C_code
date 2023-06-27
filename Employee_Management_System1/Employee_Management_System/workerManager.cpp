@@ -482,6 +482,62 @@ void WorkerManager::Find_Emp()
 	system("cls");
 }
 
+//按照编号排序
+void WorkerManager::Sort_Emp()
+{
+	if (this->m_FileIsEmpty)
+	{
+		cout << "文件不存在或者文件为空！" << endl;
+		//按任意键清屏
+		system("pause");
+		system("cls");
+
+	}
+
+	else
+	{
+		cout << "请选择排序的方式：" << endl;
+		cout << "1.按职工工号进行升序" << endl;
+		cout << "2.按职工工号进行降序" << endl;
+		int select = 0;
+		cin >> select;
+		for (int i = 0; i < m_EmpNum; i++)
+		{
+			int minOrmax = i;//声明最小值或者最大值下标
+			for (int j = i + 1; j < this->m_EmpNum; j++)
+			{
+				if (select == 1)//升序
+				{
+					if (this->m_EmpArray[minOrmax]->m_Id > this->m_EmpArray[j]->m_Id)
+					{
+						minOrmax = j;
+					}
+				}
+				else         //降序
+				{
+					if (this->m_EmpArray[minOrmax]->m_Id < this->m_EmpArray[j]->m_Id)
+					{
+						minOrmax = j;
+					}
+				}
+			}
+
+			//判断一开始认定 最小值或最大值 是不是 计算的最小值或最大值，如果不是 交换数据
+			if (i != minOrmax)
+			{
+				Worker* temp = this->m_EmpArray[i];
+				this->m_EmpArray[i] = this->m_EmpArray[minOrmax];
+				this->m_EmpArray[minOrmax] = temp;
+			}
+		}
+		cout << "排序成功！排序后的结果为：" << endl;
+		this->Save();//排序后结果保存到文件中
+		this->Show_Emp();//
+	}
+
+}
+
+
 WorkerManager::~WorkerManager()
 {
 	//堆区的东西手动开辟，手动释放
