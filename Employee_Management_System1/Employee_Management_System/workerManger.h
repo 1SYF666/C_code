@@ -55,6 +55,12 @@ public:
 	//判断职工是否存在，如果存在返回职工所在数组中的位置，不存在返回-1
 	int  IsExist(int id);
 
+	//修改职工
+	void Mod_Emp();
+
+	//查找职工
+	void Find_Emp();
+
 	//析构函数
 	~WorkerManager();
 
