@@ -69,7 +69,7 @@ float low_pass_filter(float value)
     return out;
 }
 
-void main(void)
+void main1(void)
 {
     float result[251];
 
