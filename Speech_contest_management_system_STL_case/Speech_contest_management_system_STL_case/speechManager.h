@@ -1,6 +1,10 @@
 #pragma once
 
 #include <iostream>
+#include <vector>
+#include <map>
+
+#include"speaker.h"
 using namespace std;
 
 //设计演讲管理类
@@ -35,6 +39,35 @@ public:
 	头文件中创建speaker.h文件，并添加代码
 
 	*/
+
+
+	//成员属性
+	//保存第一轮比赛选手编号容器
+	vector<int>v1;
+
+	//第一轮晋级选手编号容器
+	vector<int>v2;
+
+	//胜出前三名选手编号容器
+	vector<int>vVictory;
+
+	//存放编号以及对应具体选手容器
+	map<int, Speaker>m_Speaker;
+	
+	//比赛轮毂
+	int m_Index;
+
+	//对上面属性进行初始化操作
+	void InitSpeech();
+
+	/*
+	
+	开始创建选手
+
+	*/
+
+	//创建选手
+	void creatSpeaker();
 	
 
 
