@@ -69,10 +69,21 @@ public:
 	//创建选手
 	void creatSpeaker();
 	
+	/*
+	
+	开始抽签
+	
+	开始比赛，比赛整个流程
+	*/
 
+	//开始比赛，比赛这个流程控制函数
+	void startSpeech();
 
+	//抽签
+	void speechDraw();
 
-
+	//比赛
+	void speechContest();
 
 
 

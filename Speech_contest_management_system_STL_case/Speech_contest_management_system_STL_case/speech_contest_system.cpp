@@ -7,7 +7,7 @@ using namespace std;
 
 
 //测试
-int main()
+int main1()
 {
 	//创建管理类对象
 	SpeechManager sm;
@@ -20,12 +20,12 @@ int main()
 
 	}
 
-
+	return 0;
 }
 //?53272370?
 
 
-int main1()
+int main()
 {
 	//创建管理类对象
 	SpeechManager sm;
@@ -39,7 +39,7 @@ int main1()
 
 		switch (choice)
 		{
-		case 1:
+		case 1:sm.startSpeech();
 			break;
 		case 2:
 			break;
