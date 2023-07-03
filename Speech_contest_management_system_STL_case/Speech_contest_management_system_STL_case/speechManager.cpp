@@ -3,6 +3,8 @@
 #include "speechManager.h"
 #include <algorithm>
 #include <deque>
+#include <functional>
+#include <numeric>
 
 //构造函数
 SpeechManager::SpeechManager()
@@ -92,7 +94,7 @@ void SpeechManager::startSpeech()
 	this->speechDraw();
 
 	//2、比赛
-	
+	this->speechContest();
 	//3、显示晋级结果
 
 	//第二轮开始比赛
@@ -116,14 +118,13 @@ void SpeechManager::speechDraw()
 	{
 		//第一轮比赛
 		random_shuffle(v1.begin(), v1.end());
-		for (vector<int>::iterator it = v2.begin(); it != v2.end(); it++)
+		for (vector<int>::iterator it = v1.begin(); it != v1.end(); it++)
 		{
 			cout << *it << " ";
 		}
 		cout << endl;
-
-
 	}
+
 	else
 	{
 		//第二轮比赛
@@ -147,8 +148,8 @@ void SpeechManager::speechDraw()
 //比赛流程
 void SpeechManager::speechContest()
 {
-	cout << "-----------第	" << this->m_Index << "		轮比赛正式开始------------" << endl;
-
+	cout << "-----------第	" << this->m_Index << "轮比赛正式开始------------" << endl;
+	cout << endl;
 	vector<int>v_Src;//比赛选手容器
 
 	if (this->m_Index == 1)
@@ -172,14 +173,25 @@ void SpeechManager::speechContest()
 			cout << score << " ";
 			d.push_back(score);
 		}
+		cout << endl;
+		
+		//降序排列
+		sort(d.begin(), d.end(), greater<double>());	//排序
+		d.pop_front(); //去除最高分
+		d.pop_back();  //去除最低分
 
+		double sum = accumulate(d.begin(), d.end(), 0.0f);
+		double avg = sum / (double)d.size(); //平均分
 
-
+		//打印平均分
+		cout << "编号：" << *it << "	姓名：" << this->m_Speaker[*it].m_Name << "    获取平均分：" << avg << endl;
+		//将平均分放入到map容器中
+		this->m_Speaker[*it].m_Score[this->m_Index - 1] = avg;
+		cout << endl;
 
 	}
 
-
-
+	cout << endl;
 
 }
 
