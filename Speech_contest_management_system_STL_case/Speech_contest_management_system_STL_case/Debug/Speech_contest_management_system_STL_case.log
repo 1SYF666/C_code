@@ -12,7 +12,7 @@ D:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.2
               _InIt=std::_Deque_iterator<std::_Deque_val<std::_Deque_simple_types<double>>>,
               _Fn=std::plus<void>
           ]
-C:\Users\PC\Desktop\C\code1\C_code\Speech_contest_management_system_STL_case\Speech_contest_management_system_STL_case\speechManager.cpp(183): message : 查看对正在编译的函数 模板 实例化“_Ty std::accumulate<std::_Deque_iterator<std::_Deque_val<std::_Deque_simple_types<double>>>,float>(const _InIt,const _InIt,_Ty)”的引用
+C:\Users\PC\Desktop\C\code1\C_code\Speech_contest_management_system_STL_case\Speech_contest_management_system_STL_case\speechManager.cpp(190): message : 查看对正在编译的函数 模板 实例化“_Ty std::accumulate<std::_Deque_iterator<std::_Deque_val<std::_Deque_simple_types<double>>>,float>(const _InIt,const _InIt,_Ty)”的引用
           with
           [
               _Ty=float,
