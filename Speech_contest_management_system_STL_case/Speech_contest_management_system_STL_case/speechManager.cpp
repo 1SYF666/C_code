@@ -5,6 +5,7 @@
 #include <deque>
 #include <functional>
 #include <numeric>
+#include <fstream>
 
 //构造函数
 SpeechManager::SpeechManager()
@@ -105,12 +106,17 @@ void SpeechManager::startSpeech()
 	this->speechDraw();
 
 	//2、比赛
-	speechContest();
+	this->speechContest();
 
 	//3、显示最终结果
 	this->showScore();
 	
 	//4、保存分数到文件中
+	this->saveRecord();
+
+	cout << "本届比赛完毕！" << endl;
+	system("pause");
+	system("clc");
 
 
 }
@@ -265,6 +271,30 @@ void SpeechManager::showScore()
 	system("pause");
 	system("clc");
 	this->show_Menu();
+
+}
+
+//保存记录
+void SpeechManager::saveRecord()
+{
+	ofstream ofs;
+	//如果没有下面speech.csv文件，会自动创建
+	ofs.open("speech.csv", ios::out | ios::app);//以追加的方式写文件
+
+	//将每个选手数据写入到文件中
+	int count = 1;
+	for (vector<int>::iterator it = vVictory.begin(); it != vVictory.end()&&count<4; it++,count++)
+	{
+		//将前三名数据写入到文件中
+		ofs << "第"<<count<<"名：" << *it << "," <<"成绩是：" << this->m_Speaker[*it].m_Score[1] << "	;";
+	}
+	//写完数据就换行
+	ofs << endl;
+	
+	//关闭文件
+	ofs.close();
+
+	cout << "记录已经保存" << endl;
 
 }
 

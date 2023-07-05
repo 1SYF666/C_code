@@ -88,6 +88,11 @@ public:
 	//显示得分
 	void showScore();
 
+	//保存记录
+	void saveRecord();
+
+
+
 
 
 
