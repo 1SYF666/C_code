@@ -85,6 +85,9 @@ public:
 	//比赛
 	void speechContest();
 
+	//显示得分
+	void showScore();
+
 
 
 

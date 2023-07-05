@@ -95,15 +95,23 @@ void SpeechManager::startSpeech()
 
 	//2、比赛
 	this->speechContest();
+	
 	//3、显示晋级结果
-
+	this->showScore();
+	
 	//第二轮开始比赛
-
+	this->m_Index++;
 	//1、抽签
+	this->speechDraw();
 
 	//2、比赛
+	speechContest();
 
 	//3、显示最终结果
+	this->showScore();
+	
+	//4、保存分数到文件中
+
 
 }
 
@@ -213,7 +221,7 @@ void SpeechManager::speechContest()
 			int count = 0;
 			for (multimap<double, int, greater<double>>::iterator it = groupScore.begin(); it != groupScore.end() && count < 3; it++, count++)
 			{
-				if (this->m_Index = 1)
+				if (this->m_Index ==1)
 				{
 					v2.push_back((*it).second);
 				}
@@ -233,6 +241,33 @@ void SpeechManager::speechContest()
 	cout << "-------------------第   " << this->m_Index << "   轮比赛完毕！-------------" << endl;
 	system("pause");
 }
+
+//显示得分
+void SpeechManager::showScore()
+{
+	cout << "--------------第   " << this->m_Index << "   轮晋级选手信息如下：--------------" << endl;
+	vector<int>v;
+	if (this->m_Index == 1)
+	{
+		v = v2;
+	}
+	else
+	{
+		v = vVictory;
+	}
+	for (vector<int>::iterator it = v.begin(); it != v.end(); it++)
+	{
+		cout << "选手编号：" << *it << "	姓名：" << this->m_Speaker[*it].m_Name << "    得分：" <<
+			this->m_Speaker[*it].m_Score[this->m_Index - 1] << endl;
+	}
+	cout << endl;
+
+	system("pause");
+	system("clc");
+	this->show_Menu();
+
+}
+
 
 
 //析构函数
