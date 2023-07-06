@@ -39,11 +39,14 @@ int main()
 
 		switch (choice)
 		{
-		case 1:sm.startSpeech();
+		case 1://开始比赛
+			sm.startSpeech();
 			break;
-		case 2:
+		case 2://查看往届比赛记录
+			
 			break;
-		case 3:
+		case 3://清空比赛记录
+
 			break;
 		case 0:sm.exitSystem();
 			break;

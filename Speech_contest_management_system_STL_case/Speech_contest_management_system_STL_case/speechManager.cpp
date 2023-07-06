@@ -16,6 +16,8 @@ SpeechManager::SpeechManager()
 	//创建12名选手
 	this->creatSpeaker();
 
+	//加载往届记录
+	this->loadRecord();
 
 }
 
@@ -286,7 +288,8 @@ void SpeechManager::saveRecord()
 	for (vector<int>::iterator it = vVictory.begin(); it != vVictory.end()&&count<4; it++,count++)
 	{
 		//将前三名数据写入到文件中
-		ofs << "第"<<count<<"名：" << *it << "," <<"成绩是：" << this->m_Speaker[*it].m_Score[1] << "	;";
+		//ofs << "第"<<count<<"名：" << *it << "," <<"成绩是：" << this->m_Speaker[*it].m_Score[1] << "	,";
+		ofs << *it << "," << this->m_Speaker[*it].m_Score[1] << ",";
 	}
 	//写完数据就换行
 	ofs << endl;
@@ -296,6 +299,76 @@ void SpeechManager::saveRecord()
 
 	cout << "记录已经保存" << endl;
 
+}
+
+//读取记录
+void SpeechManager::loadRecord()
+{
+	ifstream ifs("speech.csv", ios::in); //读文件
+	//文件不存在
+	if (!ifs.is_open())
+	{
+		this->fileIsEmpty = true;
+		cout << "文件不存在" << endl;
+		ifs.close();
+		return;
+	}
+	
+	//文件清空情况
+	char ch;
+	ifs >> ch;
+	if (ifs.eof())
+	{
+		cout << "文件为空" << endl;
+		this->fileIsEmpty = true;
+		ifs.close();
+		return;
+	}
+
+	//文件存在，不为空
+	this->fileIsEmpty = false;
+
+	ifs.putback(ch);//将上面读取的单个字符 放回来
+
+	string data;
+	int index = 0;  //第几届变量数
+	while (ifs >> data)
+	{
+		//cout << data << endl;
+		//10002,86.675,10009,81.3,10007,78.55
+		int pos = -1;//查到逗号“，”位置的变量
+		int start = 0;
+
+		vector<string>v; //存放六个string字符串
+	
+		while (true)
+		{
+			pos = data.find(",", start);
+			if (pos == -1)
+			{
+				//没有找到情况
+				break;
+			}
+			string temp = data.substr(start, pos - start);
+			//cout << temp << endl;
+			v.push_back(temp);
+
+			start = pos + 1;
+		
+		}
+
+		this->m_Record.insert(make_pair(index, v));
+		index++;
+	}
+
+	ifs.close();
+
+	//简单遍历一下
+
+	for (map<int, vector<string>>::iterator it = m_Record.begin(); it != m_Record.end(); it++)
+	{
+		cout << it->first << "冠军编号：" << it->second[0] << "分数：" << it->second[1] << endl;
+	}
 }
 
 
