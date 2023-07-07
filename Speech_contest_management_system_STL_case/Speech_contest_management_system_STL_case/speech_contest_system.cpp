@@ -1,6 +1,7 @@
 #define _CRT_SECURE_NO_WARNINGS 1
 #include <iostream>
-#include <string.h>
+#include <string>
+#include <ctime>
 #include "speechManager.h"
 
 using namespace std;
@@ -9,6 +10,9 @@ using namespace std;
 //测试
 int main1()
 {
+	//随机数种子
+	srand((unsigned int)time(NULL));
+
 	//创建管理类对象
 	SpeechManager sm;
 
@@ -43,7 +47,7 @@ int main()
 			sm.startSpeech();
 			break;
 		case 2://查看往届比赛记录
-			
+			sm.showRecord();
 			break;
 		case 3://清空比赛记录
 
