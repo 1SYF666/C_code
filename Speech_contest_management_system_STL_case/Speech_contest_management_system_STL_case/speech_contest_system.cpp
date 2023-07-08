@@ -50,7 +50,7 @@ int main()
 			sm.showRecord();
 			break;
 		case 3://清空比赛记录
-
+			sm.clearRecord();
 			break;
 		case 0:sm.exitSystem();
 			break;

@@ -104,7 +104,8 @@ public:
 	//显示往届记录
 	void showRecord();
 
-
+	//清空文件
+	void clearRecord();
 
 
 

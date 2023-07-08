@@ -410,6 +410,40 @@ void SpeechManager::showRecord()
 }
 
 
+//清空文件
+void SpeechManager::clearRecord()
+{
+	cout << "是否确认清空文件？" << endl;
+	cout << "1、是" << endl;
+	cout << "2、否" << endl;
+
+	int select;
+	cin >> select;
+
+	if (select == 1)
+	{
+		//确认清空
+		ofstream ofs("speech.csv", ios::trunc);
+		ofs.close();
+
+		//初始化属性
+		this->InitSpeech();
+
+		//创建12名选手
+		this->creatSpeaker();
+
+		//加载往届记录
+		this->loadRecord();
+
+		cout << "清空成功！" << endl;
+	}
+
+	system("pause");
+	system("clc");
+}
+
+
+
 
 //析构函数
 SpeechManager::~SpeechManager()
