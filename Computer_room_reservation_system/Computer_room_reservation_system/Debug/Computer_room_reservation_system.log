@@ -1,4 +1,6 @@
 ﻿  com_room_rea_system.cpp
+  manager.cpp
   student.cpp
+  teacher.cpp
   正在生成代码...
   Computer_room_reservation_system.vcxproj -> C:\Users\PC\Desktop\C\code1\C_code\Computer_room_reservation_system\Debug\Computer_room_reservation_system.exe
