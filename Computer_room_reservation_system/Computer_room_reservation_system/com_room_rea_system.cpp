@@ -1,10 +1,11 @@
 #define _CRT_SECURE_NO_WARNINGS 1
 #include<iostream>
 using namespace std;
-
-#include"identity.h"
 #include<fstream>
+#include"identity.h"
 #include"student.h"
+#include"globalFile.h"
+#include"teacher.h"
 //登录功能   参数1  操作文件名  参数2  操作身份类型
 void LoginIn(string fileName, int type)
 {
@@ -54,10 +55,10 @@ void LoginIn(string fileName, int type)
 		string fPwd;
 		while (ifs>>fId&&ifs>>fName&&ifs>>fPwd)
 		{
-			cout << fId << endl;
-			cout << fName << endl;
-			cout << fPwd << endl;
-			cout << endl;
+			//cout << fId << endl;
+			//cout << fName << endl;
+			//cout << fPwd << endl;
+			//cout << endl;
 			if (fId == id && fName == name && fPwd == pwd)
 			{
 				cout << "学生验证登录成功！" << endl;
@@ -75,6 +76,29 @@ void LoginIn(string fileName, int type)
 	else if (type == 2)
 	{
 		//教师身份验证
+
+		int fId; //从文件中获取的id号
+		string fName; //从文件中获取的姓名
+		string fPwd;//从文件中获取的姓名
+		while (ifs >> fId && ifs >> fName && ifs >> fPwd)
+		{
+			//cout << fId << endl;
+			//cout << fName << endl;
+			//cout << fPwd << endl;
+			//cout << endl;
+			if (fId == id && fName == name && fPwd == pwd)
+			{
+				cout << "教师验证登录成功！" << endl;
+				system("pause");
+				system("clc");
+				person = new Teacher(id, name, pwd);
+				//进入教师的子菜单
+
+
+				return;
+			}
+		}
+
 	}
 	else if (type == 3)
 	{
@@ -84,8 +108,6 @@ void LoginIn(string fileName, int type)
 	cout << "验证登录失败！" << endl;
 	system("pause");
 	system("clc");
-
-
 
 
 }
@@ -119,10 +141,13 @@ int main()
 		switch (select)
 		{
 		case 1://学生身份
+			LoginIn(STUDENT_FILE, 1);
 			break;
 		case 2://老    师
+			LoginIn(TEACHER_FILE, 2);
 			break;
 		case 3://管 理 员
+			LoginIn(ADMIN_FILE, 3);
 			break;
 		case 0://退    出
 		{	cout << "欢迎下次使用" << endl;
@@ -136,12 +161,7 @@ int main()
 			system("clc");
 			break;
 		}
-
-
 	}
-
-
-
 
 
 
