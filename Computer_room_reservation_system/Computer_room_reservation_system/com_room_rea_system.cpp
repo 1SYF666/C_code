@@ -28,6 +28,7 @@ void managerMenu(Identity*& manager)
 		{
 			cout << "添加账号" << endl;
 			man->addPerson();
+
 		}
 		else if (select == 2)//查看账号
 		{
@@ -170,16 +171,12 @@ void LoginIn(string fileName, int type)
 				system("pause");
 				system("clc");
 				person = new Manager(name, pwd);
-				//进入教师的子菜单
+				//进入管理员的子菜单
 				managerMenu(person);
-				
-				
 				
 				return;
 			}
 		}
-
-
 	}
 
 	cout << "验证登录失败！" << endl;

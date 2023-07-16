@@ -1,16 +1,4 @@
 ﻿  com_room_rea_system.cpp
-C:\Users\PC\Desktop\C\code1\C_code\Computer_room_reservation_system\Computer_room_reservation_system\com_room_rea_system.cpp(91): error C2259: “Teacher”: 无法实例化抽象类
-C:\Users\PC\Desktop\C\code1\C_code\Computer_room_reservation_system\Computer_room_reservation_system\teacher.h(6): message : 参见“Teacher”的声明
-C:\Users\PC\Desktop\C\code1\C_code\Computer_room_reservation_system\Computer_room_reservation_system\com_room_rea_system.cpp(91): message : 由于下列成员:
-C:\Users\PC\Desktop\C\code1\C_code\Computer_room_reservation_system\Computer_room_reservation_system\com_room_rea_system.cpp(91): message : “void Identity::openMenu(void)”: 是抽象的
-C:\Users\PC\Desktop\C\code1\C_code\Computer_room_reservation_system\Computer_room_reservation_system\identity.h(16): message : 参见“Identity::openMenu”的声明
-C:\Users\PC\Desktop\C\code1\C_code\Computer_room_reservation_system\Computer_room_reservation_system\com_room_rea_system.cpp(91,25): error C2259: “Teacher”: 无法实例化抽象类
-C:\Users\PC\Desktop\C\code1\C_code\Computer_room_reservation_system\Computer_room_reservation_system\teacher.h(6): message : 参见“Teacher”的声明
-C:\Users\PC\Desktop\C\code1\C_code\Computer_room_reservation_system\Computer_room_reservation_system\com_room_rea_system.cpp(91,25): message : 由于下列成员:
-C:\Users\PC\Desktop\C\code1\C_code\Computer_room_reservation_system\Computer_room_reservation_system\com_room_rea_system.cpp(91,25): message : “void Identity::openMenu(void)”: 是抽象的
-C:\Users\PC\Desktop\C\code1\C_code\Computer_room_reservation_system\Computer_room_reservation_system\identity.h(16): message : 参见“Identity::openMenu”的声明
-C:\Users\PC\Desktop\C\code1\C_code\Computer_room_reservation_system\Computer_room_reservation_system\com_room_rea_system.cpp(114,18): error C2061: 语法错误: 标识符“Manager”
   manager.cpp
-  student.cpp
-  teacher.cpp
   正在生成代码...
+  Computer_room_reservation_system.vcxproj -> C:\Users\PC\Desktop\C\code1\C_code\Computer_room_reservation_system\Debug\Computer_room_reservation_system.exe
