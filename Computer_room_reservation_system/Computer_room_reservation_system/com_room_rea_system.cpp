@@ -38,7 +38,7 @@ void managerMenu(Identity*& manager)
 		else if (select == 3)//查看机房
 		{
 			cout << "查看机房" << endl;
-			man->showPerson();
+			man->showComputer();
 		}
 		else if (select == 4)//清空预约
 		{
