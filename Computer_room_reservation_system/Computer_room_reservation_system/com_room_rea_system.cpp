@@ -8,6 +8,56 @@ using namespace std;
 #include"teacher.h"
 #include"manager.h"
 
+void studentMenu(Identity*& student)
+{
+	while (true)
+	{
+		//调用学生子菜单
+		student->openMenu();
+
+		Student* stu = (Student*)student;
+
+		int select;
+		cin >> select;  //接受用户选择
+		
+		if (select == 1)
+		{
+			//申请预约
+			stu->applyOrder();
+		}
+
+		else if (select == 2)
+		{
+			//查看自身预约
+			stu->showMyOrder();
+		}
+
+		else if (select == 3)
+		{
+			//查看所有人预约
+			stu->showAllOrder();
+
+		}
+		else if (select==4)
+		{
+			//取消预约
+			stu->cancelOrder();
+		}
+		else
+		{
+			//注销登录
+			delete student;
+			cout << "注销成功" << endl;
+			system("pause");
+			system("clc");
+
+			return;
+
+		}
+	}
+}
+
+
 //进入管理员子菜单界面
 void managerMenu(Identity*& manager)
 {
@@ -54,13 +104,9 @@ void managerMenu(Identity*& manager)
 			system("pause");
 			system("clc");
 			return;
-
-
 		}
 
 	}
-
-
 }
 
 

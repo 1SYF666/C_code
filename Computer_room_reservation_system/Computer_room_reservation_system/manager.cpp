@@ -191,7 +191,12 @@ void Manager::showComputer()
 //清空预约记录
 void Manager::cleanFile()
 {
+	ofstream ofs(ORDER_FILE, ios::trunc);
+	ofs.close();
 
+	cout << "清空成功！" << endl;
+	system("pause");
+	system("clc");
 
 }
 
