@@ -171,6 +171,7 @@ void LoginIn(string fileName, int type)
 				system("clc");
 				person = new Student(id, name, pwd);
 				//进入学生身份的子菜单
+				studentMenu(person);
 
 
 				return;
