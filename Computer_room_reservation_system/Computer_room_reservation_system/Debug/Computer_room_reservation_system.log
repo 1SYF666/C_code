@@ -1,6 +1,7 @@
 ﻿  com_room_rea_system.cpp
   manager.cpp
+  orderFile.cpp
   student.cpp
-C:\Users\PC\Desktop\C\code1\C_code\Computer_room_reservation_system\Computer_room_reservation_system\student.cpp(96,20): warning C4018: “<”: 有符号/无符号不匹配
+C:\Users\PC\Desktop\C\code1\C_code\Computer_room_reservation_system\Computer_room_reservation_system\student.cpp(97,20): warning C4018: “<”: 有符号/无符号不匹配
   正在生成代码...
   Computer_room_reservation_system.vcxproj -> C:\Users\PC\Desktop\C\code1\C_code\Computer_room_reservation_system\Debug\Computer_room_reservation_system.exe

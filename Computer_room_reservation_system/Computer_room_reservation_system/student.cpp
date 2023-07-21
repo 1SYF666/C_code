@@ -2,6 +2,7 @@
 #include"student.h"
 #include<fstream>
 #include"globalFile.h"
+#include"orderFile.h"
 
 //默认构造
 Student::Student()
@@ -117,7 +118,7 @@ void Student::applyOrder()
 	ofs << "date:" << date << " ";
 	ofs << "interval:" << interval << " ";
 	ofs << "stuId:" << this->m_Id << " ";
-	ofs << "sutName:" << this->m_Name << " ";
+	ofs << "stuName:" << this->m_Name << " ";
 	ofs << "roomId:" << room << " ";
 	ofs << " status:" << 1 << endl;
 	
@@ -130,6 +131,8 @@ void Student::applyOrder()
 //查看自身预约
 void Student::showMyOrder()
 {
+	OrderFile of;
+
 
 }
 

@@ -2,6 +2,9 @@
 #include"identity.h"
 #include<vector>
 #include"computerRoom.h"
+#include"orderFile.h"
+
+
 //Ñ§ÉúÀà
 class Student :public Identity
 {
