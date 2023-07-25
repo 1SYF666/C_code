@@ -264,7 +264,6 @@ void Student::cancelOrder()
 				cout << status << endl;
 			}
 		}
-
 	}
 	cout << "请输入取消的记录，0代表返回" << endl;
 	int select;
@@ -272,16 +271,20 @@ void Student::cancelOrder()
 	while (true)
 	{
 		cin >> select;
-
 		if (select >= 0 && select <= v.size())
 		{
 			break;
 		}
-		
+		else
+		{
+			of.m_orderData[v[select - 1]]["status"] = "0";
+			of.updateOrder();
+			cout << "已取消预约" << endl;
+			break;
+		}	
 		cout << "输入有误，请重新输入" << endl;
 	}
-
-
-
+	system("pause");
+	system("clc");
 }
 
