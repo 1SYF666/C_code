@@ -3,7 +3,8 @@
 
 #include<iostream>
 #include"identity.h"
-
+#include"orderFile.h"
+#include<vector>
 //教师类设计
 class Teacher :public Identity
 {
