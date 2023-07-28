@@ -17,7 +17,11 @@
 //	char sex[10];
 //	char tel[12];
 //}STU;
-//
+
+
+
+
+
 //int main()
 //{
 //	struct stu s = { "张三",22,"男","1234334444" };
