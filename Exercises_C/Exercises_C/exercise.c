@@ -76,12 +76,25 @@
 //	return 0;
 //}
 
-int main()
-{
-	Smile();Smile();Smile();
-	printf("\n");
-	Smile(); Smile();
-	printf("\n");
-	Smile();
-	return 0;
-}
+//int main()
+//{
+//	Smile();Smile();Smile();
+//	printf("\n");
+//	Smile(); Smile();
+//	printf("\n");
+//	Smile();
+//	return 0;
+//}
+
+
+//*******************2023/7/31 19:12*********************//
+
+//int main()
+//{
+//	printf("starting now:\n");
+//	one_three();
+//	printf("done\n");
+//	return 0;
+//}
+
+
