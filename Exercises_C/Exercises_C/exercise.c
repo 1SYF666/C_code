@@ -97,4 +97,32 @@
 //	return 0;
 //}
 
+//*******************2023/8/1 21:16*********************//
+/*超出系统允许的最大int值*/
+//int main()
+//{
+//	int i = 2147483647; 
+//	unsigned int j = 4294967295; //2^32-1
+//	float toobig = 3.4E38 * 100.0f;
+//	float toosmall = (3.4E-38) / (100.0E100);
+//	
+//
+//	printf("%d %d %d\n", i, i + 1, i + 2); //整数上溢
+//	printf("%u %u %u\n", j, j + 1, j + 2); //整数上溢
+//	printf("%e\n", toobig);//浮点数上溢
+//	printf("%e", toosmall);//浮点数下溢
+//
+//	return 0;
+//}
 
+
+/*显示ASCLL码值对应的字符*/
+int main()
+{
+	int a;
+	printf("请输入一个ASCLL码值");
+	scanf("%d", &a);
+	printf("ASCLL码值%d对应的字符为:%c\n", a, a);
+
+	return 0;
+}
