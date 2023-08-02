@@ -117,12 +117,48 @@
 
 
 /*显示ASCLL码值对应的字符*/
+//int main()
+//{
+//	int a;
+//	printf("请输入一个ASCLL码值");
+//	scanf("%d", &a);
+//	printf("ASCLL码值%d对应的字符为:%c\n", a, a);
+//
+//	return 0;
+//}
+
+
+//*******************2023/8/2 19:05*********************//
+//int main()
+//{
+//	printf("\a");
+//	printf("Startled by the sudden sound,Sally shouted,\n");
+//	printf("“Startled by the sudden sound,Sally shouted”\n");
+//	return 0;
+//}
+
+//int main()
+//{
+//	float i;
+//	printf("Enter a floating-point value:");
+//	scanf("%f", &i);
+//	printf("fixed-point notation:%f\n", i);
+//	printf("exponential notation:%e\n", i);
+//	printf("p notation:%a\n", i);
+//
+//	return 0;
+//}
+
 int main()
 {
-	int a;
-	printf("请输入一个ASCLL码值");
-	scanf("%d", &a);
-	printf("ASCLL码值%d对应的字符为:%c\n", a, a);
+	int age=0;
+	float yearsconde = 3.156E7;
+	float agesconde=0;
+	printf("请输入年龄：");
+	scanf("%d", &age);
+	agesconde = age * yearsconde;
+	printf("年龄%d对应的秒数是：%f\n", age, agesconde);
+	printf("年龄%d对应的秒数是：%e\n", age, agesconde);
 
 	return 0;
 }
