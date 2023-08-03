@@ -149,16 +149,78 @@
 //	return 0;
 //}
 
+//int main()
+//{
+//	int age=0;
+//	float yearsconde = 3.156E7;
+//	float agesconde=0;
+//	printf("请输入年龄：");
+//	scanf("%d", &age);
+//	agesconde = age * yearsconde;
+//	printf("年龄%d对应的秒数是：%f\n", age, agesconde);
+//	printf("年龄%d对应的秒数是：%e\n", age, agesconde);
+//
+//	return 0;
+//}
+
+
+//*******************2023/8/3 19:24*********************//
+
+//int main()
+//{
+//	//int water=0;
+//	//float H2O = 3.156E-23;
+//	//float H2Osum = water * H2O;
+//	//printf("请输入水的夸脱数：");
+//	//scanf("%d", &water);
+//	//printf("%d的夸脱数水含有的水分子为：%a\n", water, H2Osum);
+//
+//	float quantity_mol = 3.0E-23;
+//	float quantity_qt = 950;
+//	float quarts;
+//	float molecules;
+//	printf("请输入水的跨脱数：");
+//	scanf("%f", &quarts);
+//	molecules = quarts * quantity_qt / quantity_mol;
+//	printf("水分子的数量为：%e", molecules);
+//
+//	return 0;
+//}
+
+//int main()
+//{
+//	float inch_to_cm=2.54;
+//	float height_inch;
+//	float height_cm;
+//	printf("请输入身高：(单位英寸)");
+//	scanf("%f", &height_inch);
+//	height_cm = height_inch * inch_to_cm;
+//	printf("身高为：%f(厘米)", height_cm);
+//	return 0;
+//}
+
+
 int main()
 {
-	int age=0;
-	float yearsconde = 3.156E7;
-	float agesconde=0;
-	printf("请输入年龄：");
-	scanf("%d", &age);
-	agesconde = age * yearsconde;
-	printf("年龄%d对应的秒数是：%f\n", age, agesconde);
-	printf("年龄%d对应的秒数是：%e\n", age, agesconde);
-
+	//加入pint用整数类型的话，若杯数是5.5杯，那么pint就会舍去小数位的数字，从而不会那么精确
+	float cup;
+	float pint; //一品脱等于两杯
+	float ounce; //一杯等于8盎司
+	float tablespoon;//一盎司等于两大汤勺
+	float teaspoon;  //一大汤勺等于三茶勺
+	printf("一品脱等于两杯\n");
+	printf("一杯等于8盎司\n");
+	printf("一盎司等于两大汤勺\n");
+	printf("一大汤勺等于三茶勺\n");
+	printf("请输入杯数：");
+	scanf("%f", &cup);
+	pint = cup / 2;
+	printf("%f等价于%f品脱\n", cup, pint);
+	ounce = cup * 8;
+	printf("%f等价于%f盎司\n", cup, ounce);
+	tablespoon = ounce * 2;
+	printf("%f等价于%f大汤勺\n", cup, tablespoon);
+	teaspoon = tablespoon * 3;
+	printf("%f等价于%f茶勺\n", cup, teaspoon);
 	return 0;
 }
