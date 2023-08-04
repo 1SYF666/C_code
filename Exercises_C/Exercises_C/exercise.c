@@ -200,27 +200,75 @@
 //}
 
 
+//int main()
+//{
+//	//加入pint用整数类型的话，若杯数是5.5杯，那么pint就会舍去小数位的数字，从而不会那么精确
+//	float cup;
+//	float pint; //一品脱等于两杯
+//	float ounce; //一杯等于8盎司
+//	float tablespoon;//一盎司等于两大汤勺
+//	float teaspoon;  //一大汤勺等于三茶勺
+//	printf("一品脱等于两杯\n");
+//	printf("一杯等于8盎司\n");
+//	printf("一盎司等于两大汤勺\n");
+//	printf("一大汤勺等于三茶勺\n");
+//	printf("请输入杯数：");
+//	scanf("%f", &cup);
+//	pint = cup / 2;
+//	printf("%f等价于%f品脱\n", cup, pint);
+//	ounce = cup * 8;
+//	printf("%f等价于%f盎司\n", cup, ounce);
+//	tablespoon = ounce * 2;
+//	printf("%f等价于%f大汤勺\n", cup, tablespoon);
+//	teaspoon = tablespoon * 3;
+//	printf("%f等价于%f茶勺\n", cup, teaspoon);
+//	return 0;
+//}
+
+
+//*******************2023/8/4 20:00*********************//
+
+//int main()
+//{
+//	char name[20];
+//	char surname[20];
+//	printf("请输入你的名字和姓：\n");
+//	printf("请输入你的名字：");
+//	scanf("%s", &name);
+//	printf("请输入你的姓：");
+//	scanf("%s", &surname);
+//
+//	printf("名：%s;	姓：%s\n", name, surname);
+//
+//	return 0;
+//}
+
 int main()
 {
-	//加入pint用整数类型的话，若杯数是5.5杯，那么pint就会舍去小数位的数字，从而不会那么精确
-	float cup;
-	float pint; //一品脱等于两杯
-	float ounce; //一杯等于8盎司
-	float tablespoon;//一盎司等于两大汤勺
-	float teaspoon;  //一大汤勺等于三茶勺
-	printf("一品脱等于两杯\n");
-	printf("一杯等于8盎司\n");
-	printf("一盎司等于两大汤勺\n");
-	printf("一大汤勺等于三茶勺\n");
-	printf("请输入杯数：");
-	scanf("%f", &cup);
-	pint = cup / 2;
-	printf("%f等价于%f品脱\n", cup, pint);
-	ounce = cup * 8;
-	printf("%f等价于%f盎司\n", cup, ounce);
-	tablespoon = ounce * 2;
-	printf("%f等价于%f大汤勺\n", cup, tablespoon);
-	teaspoon = tablespoon * 3;
-	printf("%f等价于%f茶勺\n", cup, teaspoon);
+	char name[20];
+	char surname[20];
+
+	int fname_length = 0;
+	int lname_length = 0;
+	
+	printf("请输入你的名字和姓：\n");
+	printf("请输入你的名字：");
+	scanf("%s", &name);
+	printf("请输入你的姓：");
+	scanf("%s", &surname);
+
+	//printf("“%s%s”\n", surname, name);
+	//printf("“********************%s%s”\n", surname, name);
+	//printf("“%s%s********************”\n", surname, name);
+	//printf("“****************%s%s”\n", surname, name);
+
+    fname_length = strlen(surname);
+    lname_length = strlen(name);
+    printf("\"%s,%s\"\n", surname, name);  //转义序列(\"),用于打印(")字符
+    printf("\"%20s,%20s\"\n", surname, name);
+    printf("\"%-20s,%-20s\"\n", surname, name);
+    printf("%*s,%*s", fname_length + 3, surname, lname_length + 3, name);
+
 	return 0;
 }
+
