@@ -243,32 +243,83 @@
 //	return 0;
 //}
 
+//int main()
+//{
+//	char name[20];
+//	char surname[20];
+//
+//	int fname_length = 0;
+//	int lname_length = 0;
+//	
+//	printf("请输入你的名字和姓：\n");
+//	printf("请输入你的名字：");
+//	scanf("%s", &name);
+//	printf("请输入你的姓：");
+//	scanf("%s", &surname);
+//
+//	//printf("“%s%s”\n", surname, name);
+//	//printf("“********************%s%s”\n", surname, name);
+//	//printf("“%s%s********************”\n", surname, name);
+//	//printf("“****************%s%s”\n", surname, name);
+//
+//    fname_length = strlen(surname);
+//    lname_length = strlen(name);
+//    printf("\"%s%s\"\n", surname, name);  //转义序列(\"),用于打印(")字符
+//    printf("\"%20s%20s\"\n", surname, name);
+//    printf("\"%-20s%-20s\"\n", surname, name);
+//    printf("%*s%*s", fname_length + 3, surname, lname_length + 3, name);
+//
+//	return 0;
+//}
+
+
+//*******************2023/8/7 18:48*********************//
+
+//int main()
+//{
+//	float a = 21.3;
+//
+//	printf("The input is %3.1f or %2.1e\n", a, a);
+//	printf("The input is %5.3f or %4.3e\n", a, a);
+//
+//
+//	return 0;
+//}
+
+
+//int main()
+//{
+//	float height;
+//	char name[20];
+//	printf("please input your name： ");
+//	scanf("%s", name);
+//	printf("please input your height in inches： ");
+//	scanf("%f", &height);
+//
+//	printf("%s ,you are %.3f feet tall\n",name,height/12.0);
+//
+//	return 0;
+//}
+
 int main()
 {
-	char name[20];
-	char surname[20];
+	float downspeed;
+	float filesize;
+	printf("please input the loaddown speed in Mb/s : ");
+	scanf("%f", &downspeed);
+	printf("please input the file size in MB : ");
+	scanf("%f", &filesize);
 
-	int fname_length = 0;
-	int lname_length = 0;
-	
-	printf("请输入你的名字和姓：\n");
-	printf("请输入你的名字：");
-	scanf("%s", &name);
-	printf("请输入你的姓：");
-	scanf("%s", &surname);
-
-	//printf("“%s%s”\n", surname, name);
-	//printf("“********************%s%s”\n", surname, name);
-	//printf("“%s%s********************”\n", surname, name);
-	//printf("“****************%s%s”\n", surname, name);
-
-    fname_length = strlen(surname);
-    lname_length = strlen(name);
-    printf("\"%s,%s\"\n", surname, name);  //转义序列(\"),用于打印(")字符
-    printf("\"%20s,%20s\"\n", surname, name);
-    printf("\"%-20s,%-20s\"\n", surname, name);
-    printf("%*s,%*s", fname_length + 3, surname, lname_length + 3, name);
-
+	printf(" At %.2f megabits per second,a file of %.2f megabytes\n",downspeed,filesize);
+	printf(" download in %.2f second\n",filesize*8.0/downspeed);
 	return 0;
 }
+
+
+
+
+
+
+
+
 
