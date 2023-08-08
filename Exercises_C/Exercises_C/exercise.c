@@ -243,7 +243,7 @@
 //	return 0;
 //}
 
-//int main()
+//int main1()
 //{
 //	char name[20];
 //	char surname[20];
@@ -285,8 +285,7 @@
 //
 //	return 0;
 //}
-
-
+// 
 //int main()
 //{
 //	float height;
@@ -301,19 +300,57 @@
 //	return 0;
 //}
 
-int main()
-{
-	float downspeed;
-	float filesize;
-	printf("please input the loaddown speed in Mb/s : ");
-	scanf("%f", &downspeed);
-	printf("please input the file size in MB : ");
-	scanf("%f", &filesize);
+//int main()
+//{
+//	float downspeed;
+//	float filesize;
+//	printf("please input the loaddown speed in Mb/s : ");
+//	scanf("%f", &downspeed);
+//	printf("please input the file size in MB : ");
+//	scanf("%f", &filesize);
+//
+//	printf(" At %.2f megabits per second,a file of %.2f megabytes\n",downspeed,filesize);
+//	printf(" download in %.2f second\n",filesize*8.0/downspeed);
+//	return 0;
+//}
 
-	printf(" At %.2f megabits per second,a file of %.2f megabytes\n",downspeed,filesize);
-	printf(" download in %.2f second\n",filesize*8.0/downspeed);
-	return 0;
-}
+//int main1()
+//{
+//	char name[20];
+//	char surname[20];
+//	int length_name = 0;
+//	int length_surname = 0;
+//
+//	printf("please input your name:");
+//	scanf("%s", name);
+//	printf("please input your surname:");
+//	scanf("%s", surname);
+//	length_name = strlen(name);
+//	length_surname = strlen(surname);
+//
+//	printf("%s %s\n", name, surname);
+//	printf("%*d %*d\n", length_name,length_name, length_surname,length_surname);
+//	printf("%-*d %-*d\n", length_name,length_name, length_surname,length_surname);
+//	printf("%d %*d\n", length_name, length_name, length_surname);
+//	
+//
+//	return 0;
+//}
+
+//#include<float.h>
+//int main()
+//{
+//	double d_value = 1.0 / 3.0;
+//	float f_value = 1.0 / 3.0;
+//	
+//	printf("FLT_DIG:%d DBL_DIG:%d\n", FLT_DIG, DBL_DIG);
+//
+//	printf("display after point six: %.6f(double) %.6f(float)\n", d_value,f_value);
+//	printf("display after point twelve: %.12f(double) %.12f(float)\n", d_value,f_value);
+//	printf("display after point sixteen: %.16f(double) %.16f(float)\n", d_value,f_value);
+//
+//	return 0;
+//}
 
 
 
