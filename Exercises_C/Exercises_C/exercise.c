@@ -352,6 +352,51 @@
 //	return 0;
 //}
 
+//*******************2023/8/9 23:29*********************//
+
+//int main()
+//{
+//	float miles;
+//	float petrol;
+//	float kilome;
+//	float liter;
+//	printf("please input travel miles in mile:");
+//	scanf("%f", &miles);
+//	printf("please input petrol in gallon:");
+//	scanf("%f", &petrol);
+//	printf("miles per gallon:%.1f\n", miles / petrol);
+//	kilome = miles * 1.609;
+//	liter = petrol * 3.785;
+//
+//	
+//	printf("liter per hundred kilometers :%.1f\n", liter / kilome*100);
+//
+//	
+//
+//	return 0;
+//}
+
+#include <stdio.h>
+#include <stdlib.h>
+#define LITRE_PER_GALLON 3.785 //1加仑大约3.785升
+#define KM_PER_MILE 1.609      //1英里大约为1.609千米
+int main()
+{
+    float mileage;              //历程数（千米）
+    float gasoline;             //消耗的汽油量（升）
+    float mile_per_gallon;      //英里/加仑
+    float litre_per_hundred_km; //升/100公里
+    printf("请输入旅行总旅程数（千米）：");
+    scanf("%f", &mileage);
+    printf("请输入旅行消耗的汽油量（升）：");
+    scanf("%f", &gasoline);
+    mile_per_gallon = (mileage / KM_PER_MILE) / (gasoline / LITRE_PER_GALLON);
+    litre_per_hundred_km = gasoline / mileage * 100;
+    printf("消耗每加仑汽油行驶的英里数：%.1f\n", mile_per_gallon);
+    printf("每行驶100公里消耗的汽油数（升）：%.1f", litre_per_hundred_km);
+    return 0;
+}
+
 
 
 
