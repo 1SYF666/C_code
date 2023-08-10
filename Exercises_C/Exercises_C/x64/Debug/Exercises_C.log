@@ -1,8 +1,7 @@
 ﻿  exercise.c
-C:\Users\PC\Desktop\C\code1\C_code\Exercises_C\Exercises_C\exercise.c(393,78): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+C:\Users\PC\Desktop\C\code1\C_code\Exercises_C\Exercises_C\exercise.c(406,19): error C2065: “new”: 未声明的标识符
+C:\Users\PC\Desktop\C\code1\C_code\Exercises_C\Exercises_C\exercise.c(406,19): error C2143: 语法错误: 缺少“;”(在“类型”的前面)
+C:\Users\PC\Desktop\C\code1\C_code\Exercises_C\Exercises_C\exercise.c(406,19): warning C4091: “ ”: 没有声明变量时忽略“int”的左侧
+C:\Users\PC\Desktop\C\code1\C_code\Exercises_C\Exercises_C\exercise.c(406,1): warning C4047: “初始化”:“int *”与“int”的间接级别不同
   function.c
-C:\Users\PC\Desktop\C\code1\C_code\Exercises_C\Exercises_C\SqList.h(34,1): warning C4005: “MAXSIZE”: 宏重定义
-C:\Users\PC\Desktop\C\code1\C_code\Exercises_C\Exercises_C\SqList.h(18): message : 参见“MAXSIZE”的前一个定义
-C:\Users\PC\Desktop\C\code1\C_code\Exercises_C\Exercises_C\SqList.h(46,2): error C2371: “SqList”: 重定义；不同的基类型
-C:\Users\PC\Desktop\C\code1\C_code\Exercises_C\Exercises_C\SqList.h(29): message : 参见“SqList”的声明
   正在生成代码...
