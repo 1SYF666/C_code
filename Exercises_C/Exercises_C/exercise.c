@@ -410,6 +410,61 @@
 //}
 
 
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+
+#define MINUTES_PER_HOUR 60
+
+int main()
+{
+	int minute;
+	int time_h;
+	int time_m;
+
+	while (1)
+	{
+		printf("Please enter a number for minute (<= 0 to quit):");
+		scanf("%d", &minute);
+		if (minute <= 0)
+		{
+			break; //quit the programmer
+		}
+		time_h = minute / MINUTES_PER_HOUR;
+		time_m = minute % MINUTES_PER_HOUR;
+		printf("minute:%d equivalent hour:%d and minute:%d\n", minute, time_h, time_m);
+		printf("You can enter again (<= 0 to quit):\n");
+	}
+	printf("Done.\n");
+
+	return 0;
+}
+
+
+//#include <stdio.h>
+//#define MINUTES_PER_HOUR 60
+//
+//int main(void)
+//{
+//	int m = 0, hour, minutes;
+//
+//	printf("Please enter a number for minute (<= 0 to quit): ");
+//	while ((scanf("%d", &m) == 1) && (m > 0))
+//	{
+//		hour = m / MINUTES_PER_HOUR;
+//		minutes = m % MINUTES_PER_HOUR;
+//		printf("%d minutes = %d hours and %d minutes.\n", m, hour, minutes);
+//		printf("You can enter again (<= 0 to quit): ");
+//	}
+//	printf("Done.\n");
+//
+//	return 0;
+//}
+
+
+
+
+
 
 
 
