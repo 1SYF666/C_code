@@ -141,6 +141,7 @@
   <ItemGroup>
     <ClCompile Include="exercise.c" />
     <ClCompile Include="function.c" />
+    <ClCompile Include="SqList.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="function.h" />

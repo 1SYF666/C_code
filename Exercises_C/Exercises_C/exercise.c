@@ -537,22 +537,22 @@
 
 
 
-int main()
-{
-	float a=10;
-	float b=3;
-	//int b=3;
-	float c=0;
-	int d = 0;
-	int e = 0;
-	c = a / b;  //3.333
-	d = a / b;  //3
-	e = (int)a / b;  //3
-
-
-
-	return 0;
-}
+//int main()
+//{
+//	float a=10;
+//	float b=3;
+//	//int b=3;
+//	float c=0;
+//	int d = 0;
+//	int e = 0;
+//	c = a / b;  //3.333
+//	d = a / b;  //3
+//	e = (int)a / b;  //3
+//
+//
+//
+//	return 0;
+//}
 
 
 
