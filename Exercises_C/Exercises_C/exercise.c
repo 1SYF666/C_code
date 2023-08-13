@@ -409,36 +409,36 @@
 //	return 0;
 //}
 
-
-#include<stdio.h>
-#include<stdlib.h>
-#include<string.h>
-
-#define MINUTES_PER_HOUR 60
-
-int main()
-{
-	int minute;
-	int time_h;
-	int time_m;
-
-	while (1)
-	{
-		printf("Please enter a number for minute (<= 0 to quit):");
-		scanf("%d", &minute);
-		if (minute <= 0)
-		{
-			break; //quit the programmer
-		}
-		time_h = minute / MINUTES_PER_HOUR;
-		time_m = minute % MINUTES_PER_HOUR;
-		printf("minute:%d equivalent hour:%d and minute:%d\n", minute, time_h, time_m);
-		printf("You can enter again (<= 0 to quit):\n");
-	}
-	printf("Done.\n");
-
-	return 0;
-}
+//
+//#include<stdio.h>
+//#include<stdlib.h>
+//#include<string.h>
+//
+//#define MINUTES_PER_HOUR 60
+//
+//int main()
+//{
+//	int minute;
+//	int time_h;
+//	int time_m;
+//
+//	while (1)
+//	{
+//		printf("Please enter a number for minute (<= 0 to quit):");
+//		scanf("%d", &minute);
+//		if (minute <= 0)
+//		{
+//			break; //quit the programmer
+//		}
+//		time_h = minute / MINUTES_PER_HOUR;
+//		time_m = minute % MINUTES_PER_HOUR;
+//		printf("minute:%d equivalent hour:%d and minute:%d\n", minute, time_h, time_m);
+//		printf("You can enter again (<= 0 to quit):\n");
+//	}
+//	printf("Done.\n");
+//
+//	return 0;
+//}
 
 
 //#include <stdio.h>
@@ -462,9 +462,97 @@ int main()
 //}
 
 
+//int main()
+//{
+//	int input = 0;
+//	int i = 0;
+//	printf("please input the integer:");
+//	scanf("%d", &input);
+//	printf("display:\n");
+//	for (i = input; i <= input + 10; i++)
+//	{
+//		printf("%d ", i);
+//	}
+//	printf("\n");
+//	printf("Done.\n");
+//	return 0;
+//}
+
+//#define DAYS_PER_WEEK  7
+
+//int main()
+//{
+//	int day_num;
+//	int day_total;
+//	int week_num;
+//	printf("please input the day(<=0 to quit):");
+//	while (1)
+//	{
+//		scanf("%d", &day_total);
+//		if (day_total > 0)
+//		{
+//			week_num = day_total / DAYS_PER_WEEK;
+//			day_num = day_total % DAYS_PER_WEEK;
+//			printf("%d days are %d weeks, %d days\n", day_total, week_num, day_num);
+//			printf("You can enter again (<=0 to quit): ");
+//		}
+//		else
+//		{
+//			printf("input error!exit!\n");
+//			break;
+//		}
+//	}
+//
+//	return  0;
+//}
+
+
+//#define FEET_TO_INCH  12
+//#define INCH_TO_cm  2.54
+//
+//int main()
+//{
+//	float centimeters =0.0;
+//	float inches =0.0;
+//	float inches_total =0.0;
+//	int feet = 0;
+//
+//	while (1)
+//	{
+//		printf("Enter a height in centimeters(<=0 to quit): ");
+//		scanf("%f", &centimeters);
+//		if (centimeters <= 0)
+//		{
+//			printf("bye\n");
+//			break;
+//		}
+//	    inches_total = centimeters /  INCH_TO_cm;
+//		feet = inches_total / FEET_TO_INCH;
+//		inches = inches_total - feet * FEET_TO_INCH;
+//		printf("%.1f cm = %d feet, %.1f inches\n", centimeters, feet, inches);
+//	}
+//
+//	return 0;
+//}
 
 
 
+int main()
+{
+	float a=10;
+	float b=3;
+	//int b=3;
+	float c=0;
+	int d = 0;
+	int e = 0;
+	c = a / b;  //3.333
+	d = a / b;  //3
+	e = (int)a / b;  //3
+
+
+
+	return 0;
+}
 
 
 
