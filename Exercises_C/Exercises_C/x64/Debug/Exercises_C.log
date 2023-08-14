@@ -1,3 +1,19 @@
 ﻿  exercise.c
-C:\Users\PC\Desktop\C\code1\C_code\Exercises_C\Exercises_C\exercise.c(549,11): warning C4244: “=”: 从“float”转换到“int”，可能丢失数据
-  Exercises_C.vcxproj -> C:\Users\PC\Desktop\C\code1\C_code\Exercises_C\x64\Debug\Exercises_C.exe
+  function.c
+C:\Users\PC\Desktop\C\code1\C_code\Exercises_C\Exercises_C\SqList.h(68,27): error C2143: 语法错误: 缺少“)”(在“&”的前面)
+C:\Users\PC\Desktop\C\code1\C_code\Exercises_C\Exercises_C\SqList.h(68,27): error C2143: 语法错误: 缺少“{”(在“&”的前面)
+C:\Users\PC\Desktop\C\code1\C_code\Exercises_C\Exercises_C\SqList.h(68,27): error C2059: 语法错误:“&”
+C:\Users\PC\Desktop\C\code1\C_code\Exercises_C\Exercises_C\SqList.h(68,30): error C2059: 语法错误:“)”
+C:\Users\PC\Desktop\C\code1\C_code\Exercises_C\Exercises_C\SqList.h(71,25): error C2143: 语法错误: 缺少“)”(在“&”的前面)
+C:\Users\PC\Desktop\C\code1\C_code\Exercises_C\Exercises_C\SqList.h(71,25): error C2143: 语法错误: 缺少“{”(在“&”的前面)
+C:\Users\PC\Desktop\C\code1\C_code\Exercises_C\Exercises_C\SqList.h(71,25): error C2059: 语法错误:“&”
+C:\Users\PC\Desktop\C\code1\C_code\Exercises_C\Exercises_C\SqList.h(71,28): error C2059: 语法错误:“)”
+C:\Users\PC\Desktop\C\code1\C_code\Exercises_C\Exercises_C\SqList.h(74,23): error C2143: 语法错误: 缺少“)”(在“&”的前面)
+C:\Users\PC\Desktop\C\code1\C_code\Exercises_C\Exercises_C\SqList.h(74,23): error C2143: 语法错误: 缺少“{”(在“&”的前面)
+C:\Users\PC\Desktop\C\code1\C_code\Exercises_C\Exercises_C\SqList.h(74,23): error C2059: 语法错误:“&”
+C:\Users\PC\Desktop\C\code1\C_code\Exercises_C\Exercises_C\SqList.h(74,26): error C2059: 语法错误:“)”
+C:\Users\PC\Desktop\C\code1\C_code\Exercises_C\Exercises_C\SqList.h(83,39): error C2143: 语法错误: 缺少“)”(在“&”的前面)
+C:\Users\PC\Desktop\C\code1\C_code\Exercises_C\Exercises_C\SqList.h(83,39): error C2143: 语法错误: 缺少“{”(在“&”的前面)
+C:\Users\PC\Desktop\C\code1\C_code\Exercises_C\Exercises_C\SqList.h(83,39): error C2059: 语法错误:“&”
+C:\Users\PC\Desktop\C\code1\C_code\Exercises_C\Exercises_C\SqList.h(83,42): error C2059: 语法错误:“)”
+  正在生成代码...
