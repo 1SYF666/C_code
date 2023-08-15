@@ -139,8 +139,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="exercise.c" />
-    <ClCompile Include="function.c" />
+    <ClCompile Include="exercise.cpp" />
+    <ClCompile Include="function.cpp" />
     <ClCompile Include="SqList.cpp" />
   </ItemGroup>
   <ItemGroup>
