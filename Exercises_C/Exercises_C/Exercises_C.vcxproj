@@ -141,10 +141,12 @@
   <ItemGroup>
     <ClCompile Include="exercise.cpp" />
     <ClCompile Include="function.cpp" />
+    <ClCompile Include="Singly_Linked_List.cpp" />
     <ClCompile Include="SqList.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="function.h" />
+    <ClInclude Include="Singly_Linked_List.h" />
     <ClInclude Include="SqList.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

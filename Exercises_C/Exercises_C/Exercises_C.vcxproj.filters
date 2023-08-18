@@ -24,12 +24,18 @@
     <ClCompile Include="SqList.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="Singly_Linked_List.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="function.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="SqList.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Singly_Linked_List.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
