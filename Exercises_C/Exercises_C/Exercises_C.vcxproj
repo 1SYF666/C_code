@@ -143,11 +143,13 @@
     <ClCompile Include="function.cpp" />
     <ClCompile Include="Singly_Linked_List.cpp" />
     <ClCompile Include="SqList.cpp" />
+    <ClCompile Include="stack.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="function.h" />
     <ClInclude Include="Singly_Linked_List.h" />
     <ClInclude Include="SqList.h" />
+    <ClInclude Include="stack.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
