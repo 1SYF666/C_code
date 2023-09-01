@@ -116,6 +116,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <ProgramDataBaseFileName>$(IntDir)vc$(PlatformToolsetVersion)_tmp.pdb</ProgramDataBaseFileName>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -141,12 +142,14 @@
   <ItemGroup>
     <ClCompile Include="exercise.cpp" />
     <ClCompile Include="function.cpp" />
+    <ClCompile Include="Linked_stack.cpp" />
     <ClCompile Include="Singly_Linked_List.cpp" />
     <ClCompile Include="SqList.cpp" />
     <ClCompile Include="stack.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="function.h" />
+    <ClInclude Include="Linked _stack.h" />
     <ClInclude Include="Singly_Linked_List.h" />
     <ClInclude Include="SqList.h" />
     <ClInclude Include="stack.h" />

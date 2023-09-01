@@ -30,6 +30,9 @@
     <ClCompile Include="stack.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="Linked_stack.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="function.h">
@@ -42,6 +45,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="stack.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Linked _stack.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
