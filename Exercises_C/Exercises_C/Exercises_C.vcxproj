@@ -143,6 +143,7 @@
     <ClCompile Include="exercise.cpp" />
     <ClCompile Include="function.cpp" />
     <ClCompile Include="Linked_stack.cpp" />
+    <ClCompile Include="queue.cpp" />
     <ClCompile Include="Singly_Linked_List.cpp" />
     <ClCompile Include="SqList.cpp" />
     <ClCompile Include="stack.cpp" />
@@ -150,6 +151,7 @@
   <ItemGroup>
     <ClInclude Include="function.h" />
     <ClInclude Include="Linked _stack.h" />
+    <ClInclude Include="queue.h" />
     <ClInclude Include="Singly_Linked_List.h" />
     <ClInclude Include="SqList.h" />
     <ClInclude Include="stack.h" />
