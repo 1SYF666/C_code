@@ -1,20 +1,5 @@
 ﻿  exercise.cpp
-  function.cpp
-C:\Users\PC\Desktop\C\code1\C_code\Exercises_C\Exercises_C\SqList.h(58,1): warning C4005: “OVERFLOW”: 宏重定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\ucrt\corecrt_math.h(965): message : 参见“OVERFLOW”的前一个定义
-  Linked_stack.cpp
-  Linked_queue.cpp
-  queue.cpp
-C:\Users\PC\Desktop\C\code1\C_code\Exercises_C\Exercises_C\queue.h(50,1): warning C4005: “OVERFLOW”: 宏重定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\ucrt\corecrt_math.h(965): message : 参见“OVERFLOW”的前一个定义
-  Singly_Linked_List.cpp
-C:\Users\PC\Desktop\C\code1\C_code\Exercises_C\Exercises_C\Singly_Linked_List.h(12,1): warning C4005: “OVERFLOW”: 宏重定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\ucrt\corecrt_math.h(965): message : 参见“OVERFLOW”的前一个定义
-  SqList.cpp
-C:\Users\PC\Desktop\C\code1\C_code\Exercises_C\Exercises_C\SqList.h(58,1): warning C4005: “OVERFLOW”: 宏重定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\ucrt\corecrt_math.h(965): message : 参见“OVERFLOW”的前一个定义
-  stack.cpp
-  正在生成代码...
-C:\Users\PC\Desktop\C\code1\C_code\Exercises_C\Exercises_C\queue.cpp(179): warning C4715: “GetHead”: 不是所有的控件路径都返回值
-C:\Users\PC\Desktop\C\code1\C_code\Exercises_C\Exercises_C\Linked_stack.cpp(47): warning C4715: “GetTop”: 不是所有的控件路径都返回值
+C:\Users\PC\Desktop\C\code1\C_code\Exercises_C\Exercises_C\exercise.cpp(1443,11): warning C4473: “printf”: 没有为格式字符串传递足够的参数
+C:\Users\PC\Desktop\C\code1\C_code\Exercises_C\Exercises_C\exercise.cpp(1443,11): message : 占位符和其参数预计 2 可变参数，但提供的却是 1 参数
+C:\Users\PC\Desktop\C\code1\C_code\Exercises_C\Exercises_C\exercise.cpp(1443,11): message : 缺失的可变参数 2 为格式字符串“%3d”所需
   Exercises_C.vcxproj -> C:\Users\PC\Desktop\C\code1\C_code\Exercises_C\x64\Debug\Exercises_C.exe
