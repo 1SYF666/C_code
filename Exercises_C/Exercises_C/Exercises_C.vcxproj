@@ -140,6 +140,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\..\WCDMA_from_github_CSDN\2023_09_16\cPPbmp\处理.cpp" />
+    <ClCompile Include="BmpRot.cpp" />
     <ClCompile Include="exercise.cpp" />
     <ClCompile Include="function.cpp" />
     <ClCompile Include="Linked_stack.cpp" />
@@ -157,6 +159,7 @@
     <ClInclude Include="Singly_Linked_List.h" />
     <ClInclude Include="SqList.h" />
     <ClInclude Include="stack.h" />
+    <ClInclude Include="BmpRot.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

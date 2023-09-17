@@ -39,6 +39,12 @@
     <ClCompile Include="queue.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\WCDMA_from_github_CSDN\2023_09_16\cPPbmp\处理.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="BmpRot.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="function.h">
@@ -60,6 +66,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="queue.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="BmpRot.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
