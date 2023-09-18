@@ -140,7 +140,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\..\WCDMA_from_github_CSDN\2023_09_16\cPPbmp\处理.cpp" />
+    <ClCompile Include="..\..\..\..\WCDMA_from_github_CSDN\2023_09_16\cPPbmp\image.cpp" />
     <ClCompile Include="BmpRot.cpp" />
     <ClCompile Include="exercise.cpp" />
     <ClCompile Include="function.cpp" />
