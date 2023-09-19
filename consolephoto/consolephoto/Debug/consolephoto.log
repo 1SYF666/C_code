@@ -1,0 +1,7 @@
+﻿  灰度.cpp
+C:\Users\PC\Desktop\C\WCDMA_from_github_CSDN\2023_09_19\通过控制台将图片以灰度形式输出\控制台灰度输出图片\灰度\灰度.cpp(41,8): warning C4101: “y”: 未引用的局部变量
+C:\Users\PC\Desktop\C\WCDMA_from_github_CSDN\2023_09_19\通过控制台将图片以灰度形式输出\控制台灰度输出图片\灰度\灰度.cpp(41,5): warning C4101: “x”: 未引用的局部变量
+C:\Users\PC\Desktop\C\WCDMA_from_github_CSDN\2023_09_19\通过控制台将图片以灰度形式输出\控制台灰度输出图片\灰度\灰度.cpp(43,5): warning C4101: “n”: 未引用的局部变量
+  stdafx.cpp
+  正在生成代码...
+  consolephoto.vcxproj -> C:\Users\PC\Desktop\C\code1\C_code\consolephoto\Debug\consolephoto.exe
