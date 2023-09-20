@@ -577,33 +577,65 @@ void SingleWcdma::symbolsync(float* inputI, float* inputQ, int signallen, float*
 
 		int sum_length2 = spread_factor_Q / muser.spread_factor_I;
 
-		
+		int sum_number2 = floor(sum_number / sum_length2);
 
+		for (int k = 0; k < sum_number2; k++)
+		{
+			int sum_temp = 0;
 
+			for (int z = 0; z < sum_length2; z++)
+			{
+				sum_temp += FsynchI[k * sum_length2 + z];
+			}
+
+			synchresultQ[k] = sum_temp / sum_length2;
+		}
 
 	}
-	else {
+	else
+	{
 		for (int i = 1; i < sum_number; i++)
 		{
-			FsynchI[i] = PNsynchQ[i] * cos(NCO_Phase[(i - 1)]) + PNsynchI[i] * sin(NCO_Phase[(i - 1)]);
-			FsynchQ[i] = PNsynchI[i] * cos(NCO_Phase[(i - 1)]) - PNsynchQ[i] * sin(NCO_Phase[(i - 1)]);
+			//**************************改得可能存在问题*********************************//
+			FsynchI[i] = Vo_sumimag[i] * cos(NCO_Phase[(i - 1)]) + Vo_sumreal[i] * sin(NCO_Phase[(i - 1)]);
+			FsynchQ[i] = Vo_sumreal[i] * cos(NCO_Phase[(i - 1)]) - Vo_sumimag[i] * sin(NCO_Phase[(i - 1)]);
 			Discriminator_Out[i] = (FsynchI[i] > 0 ? FsynchQ[i] : -FsynchQ[i]) - (FsynchQ[i] > 0 ? FsynchI[i] : -FsynchI[i]);//如果FsynchI=0，,FsynchQ=0,则取0，会有问题
 			PLL_Phase_Part[i] = Discriminator_Out[i] * CostasPll.fPLLLoopFilterCoef1;
 			PLL_Freq_Part[i] = Discriminator_Out[i] * CostasPll.fPLLLoopFilterCoef2 + PLL_Freq_Part[i - 1];
 			Freq_Control[i] = PLL_Phase_Part[i] + PLL_Freq_Part[i];
 			NCO_Phase[i] = NCO_Phase[i - 1] + Freq_Control[i] * 2 * Pi;
-			synchresultI[i] = FsynchI[i] * muser.Descramble_end_I[i];
-			synchresultQ[i] = FsynchQ[i];
 
+			//**************************改得可能存在问题*********************************//
+			Vo_dep_A_real[i] = Vo_dep_A_sumimag[i] * cos(NCO_Phase[(i - 1)]) + Vo_dep_A_sumreal[i] * sin(NCO_Phase[(i - 1)]); //相当于I路数据输出
+			Vo_dep_A_imag[i] = Vo_dep_A_sumreal[i] * cos(NCO_Phase[(i - 1)]) - Vo_dep_A_sumimag[i] * sin(NCO_Phase[(i - 1)]);
+
+			synchresultI[i] = Vo_dep_A_real[i];  //将I路数据输出保存在synchresultI数组中
+
+			// 第二次积分操作--目的是：解Q路数据。由于上述第一次积分操作后 Vo_sumimag中每一个元素
+			// 相当于还原出Q路数据中sum_length/spread_factor_Q * point个符号，故再需要积分长度为：
+			// spread_factor_Q * point/sum_length，对FsynchI积分 将Q路真正还原出来
+
+			int sum_length2 = spread_factor_Q / muser.spread_factor_I;
+			int sum_number2 = floor(sum_number / sum_length2);
+
+			for (int k = 0; k < sum_number2; k++)
+			{
+				int sum_temp = 0;
+
+				for (int z = 0; z < sum_length2; z++)
+				{
+					sum_temp += FsynchI[k * sum_length2 + z];
+				}
+
+				synchresultQ[k] = sum_temp / sum_length2;
+			}
 		}
+
 	}
 
-	synchresultI[0] = 0;
-	synchresultQ[0] = 0;
+	//synchresultI[0] = 0;
+	//synchresultQ[0] = 0;
 
-
-	DELETE_ARR(PNsynchI);
-	DELETE_ARR(PNsynchQ);
 	DELETE_ARR(NCO_Phase);
 	DELETE_ARR(Discriminator_Out);
 	DELETE_ARR(Freq_Control);
@@ -611,6 +643,8 @@ void SingleWcdma::symbolsync(float* inputI, float* inputQ, int signallen, float*
 	DELETE_ARR(PLL_Freq_Part);
 	DELETE_ARR(FsynchI);
 	DELETE_ARR(FsynchQ);
+	DELETE_ARR(Vo_dep_A_real);
+	DELETE_ARR(Vo_dep_A_imag);
 
 }
 
