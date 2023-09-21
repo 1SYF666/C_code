@@ -10,7 +10,7 @@
 #include"ipp.h"
 
 
-
+using namespace std::chrono;
 using namespace std;
 
 #define DELETE_ARR(ptr)\
@@ -87,6 +87,17 @@ public:
     void symbolsync(float* inputI, float* inputQ, int signallen, float* PNnow_jieI, float* PNnow_jieQ, Users muser, float* synchresultI, float* synchresultQ);
 
 
+    void InitSync();
+
+    void WInit(WCdata WCdmadata);
+
+    void judgment(float* inputi, float* inputq, Users muser, int signallen, int* demoresulti, int* demoresultq, signalout* signal_SOQP_Out, int useNum);
+    int readgold();
+
+    void Demodulation(float* data_realin, float* data_imagin, WCdata WCdmadata, long long llBaseTime, signalout* signal_SOQP_Out);
+
+
+
 
     //捕获模块需要用到的数组及变量申明
     float* SignalFFTI;
@@ -104,7 +115,19 @@ public:
     SymbolSyncFactorWCDMA symbolsyncsactorInit;  // 伪码同步中，环路滤波器要用到的相关参数
     CostasPLLWCDMA CostasPll;                    // 科斯塔斯环中要用到的相关参数
 
+  
+
+    // WIni函数以及解调函数要用到的参数
+    float* m_dataI;
+    float* m_dataQ;
+    float* m_dataIbu;
+    float* m_dataQbu;
+    int target_power = 1;
+    bool Signalflag = false;
+
+
 private:
+    int llSlic;   //作用是什么？？？？？？？？
 
 };
 

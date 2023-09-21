@@ -5,6 +5,11 @@ int m_SamleSize = 8192;			//捕获时决定采用一次滑动8192个点进行自相关计算
 int spread_factor_Q = 256;		//Q路扩频码长度，已经固定住
 int Gold_len = 38400;           //扰码的长度
 
+
+int WCDMS_FS = 7680000;
+int rate = 3840000;
+
+
 //傅里叶变换
 void SingleWcdma::ippfft(float* data_real, float* data_imag, int FFT_LENGTH, int flag1, float* Ioutput, float* Qoutput, float* output)
 {
@@ -647,6 +652,512 @@ void SingleWcdma::symbolsync(float* inputI, float* inputQ, int signallen, float*
 	DELETE_ARR(Vo_dep_A_imag);
 
 }
+
+
+
+//伪码同步以及锁相环里需要用到的相关参数
+void SingleWcdma::InitSync()
+{
+	symbolsyncsactorInit.fSymbolSyncFactor1 = 5.192497276947567;
+	symbolsyncsactorInit.fSymbolSyncFactor2 = 0.138494477606760;
+	symbolsyncsactorInit.ThresholdPositive = 20;
+	symbolsyncsactorInit.ThresholdNegative = -20;
+	
+
+	CostasPll.fPLLLoopFilterCoef1 = 5.2078e-4;
+	CostasPll.fPLLLoopFilterCoef2 = 1.3565e-07;
+}
+
+
+
+
+//为Demodulation函数以及Capture函数进行一些初始化操作
+void SingleWcdma::WInit(WCdata WCdmadata)
+{
+	m_dataI = new float[90000];
+	m_dataQ = new float[90000];
+	m_dataIbu = new float[16384];
+	m_dataQbu = new float[16384];
+	memset(m_dataIbu, 0, 16384 * sizeof(float));
+	memset(m_dataQbu, 0, 16384 * sizeof(float));
+	llSlic = 0;
+	int nums = WCdmadata.users.size();
+	//readgold();
+	InitSync();
+
+	int Gold_length = 128 * 4 * 4 * 4;;
+	int capture_len = Gold_length * point;
+
+	SignalFFTI = new float[capture_len];
+	memset(SignalFFTI, 0, capture_len * sizeof(float));
+	SignalFFTQ = new float[capture_len];
+	memset(SignalFFTQ, 0, capture_len * sizeof(float));
+
+	Signaldata = new float[capture_len];
+	memset(Signaldata, 0, capture_len * sizeof(float));
+	DotMultI = new float[capture_len];
+	memset(DotMultI, 0, capture_len * sizeof(float));
+	DotMultQ = new float[capture_len];
+	memset(DotMultQ, 0, capture_len * sizeof(float));
+
+	i_fft_abs = new float[capture_len];
+	memset(i_fft_abs, 0, capture_len * sizeof(float));
+	i_fft_I = new float[capture_len];
+	memset(i_fft_I, 0, capture_len * sizeof(float));
+	i_fft_Q = new float[capture_len];
+	memset(i_fft_Q, 0, capture_len * sizeof(float));
+
+	//int Gold_length = 128 * 4 * 4 * 2;
+	//int capture_len = Gold_length * point;
+	//PNdata_buhuo_I = new float[capture_len];
+	//memset(PNdata_buhuo_I, 0, capture_len * sizeof(float));
+	//PNdata_buhuo_Q = new float[capture_len];
+	//memset(PNdata_buhuo_Q, 0, capture_len * sizeof(float));
+	//for (int i = 0; i < capture_len; i++)
+	//{
+	//    PNdata_buhuo_I[i] = Gold_i[i / point] * ovsf_Q[i / point];
+	//    PNdata_buhuo_Q[i] = Gold_q[i / point] * ovsf_Q[i / point];;
+	//}
+	//int sys_gold_len = 2 * Gold_len;
+	//Descramble_I = new float[2 * Gold_len];
+	//memset(Descramble_I, 0, sys_gold_len * sizeof(float));
+	//Descramble_Q = new float[sys_gold_len];
+	//memset(Descramble_Q, 0, sys_gold_len * sizeof(float));
+	//Descramble_end_Q = new float[sys_gold_len];
+	//memset(Descramble_end_Q, 0, sys_gold_len * sizeof(float));
+	//for (int i = 0; i < sys_gold_len; i++)
+	//{
+	//    Descramble_I[i] = Gold_i[i / 2] * ovsf_I[i / 2];
+	//    Descramble_Q[i] = -Gold_q[i / 2] * ovsf_I[i / 2];//?????
+	//    Descramble_end_Q[i] = ovsf_I[i / 2];
+	//}
+
+
+}
+
+
+void SingleWcdma::judgment(float* inputi, float* inputq, Users muser, int signallen, int* demoresulti, int* demoresultq, signalout* signal_SOQP_Out, int useNum)
+{
+	/*
+		inputi 输入信号实部
+		inputq 输入信号虚部
+		signallen 信号长度
+
+
+	*/
+
+
+
+	//FILE* fp3;
+	//char file_path3[500];
+	//sprintf(file_path3, "F:/WCDMA1/signali.txt");   //11dB
+	//fp3 = fopen(file_path3, "at");
+	//for (int m = 0; m < 76800; m++)
+	//{
+	//	fprintf(fp3, "%f\n", inputi[m]);
+	//}
+	//fclose(fp3);
+
+
+	//int i, j;
+	//int symbol_I, symbol_Q;
+	//symbol_I = point * muser.spread_factor_I;
+	//symbol_Q = point * spread_factor_Q;
+	//int signalnum_i = signallen / (muser.spread_factor_I * point);
+	//int signalnum_q = floor(signallen / (spread_factor_Q * point));
+	//float tempi, tempq;
+
+	//for (i = 0; i < signalnum_i; i++)
+	//{
+	//	//积分操作
+	//	tempi = 0;
+	//	for (j = 0; j < symbol_I; j++)
+	//	{
+	//		tempi = tempi + inputi[i * symbol_I + j];
+	//	}
+	//	if (i < 150)
+	//		signal_SOQP_Out->userdata[useNum].SynchresultI[i] = tempi;
+	//	demoresulti[i] = tempi > 0 ? 1 : -1;
+	//	//printf("%d==%f\n",i, demoresulti[i]);
+	//}
+	//for (int i = 0; i < signalnum_q; i++)
+	//{
+	//	tempq = 0;
+	//	for (int j = 0; j < symbol_Q; j++)
+	//	{
+	//		tempq = tempq + inputq[i * symbol_Q + j];
+	//	}
+	//	if (i < 150)
+	//		signal_SOQP_Out->userdata[useNum].SynchresultQ[i] = tempq;
+	//	demoresultq[i] = tempq > 0 ? 1 : -1;
+	//	//printf("%d==%f\n",i, demoresultq[i]);
+	//}
+
+	//Gold_len =38400
+	int number_I = Gold_len / muser.spread_factor_I;
+	int number_Q = Gold_len / spread_factor_Q;
+
+	for (int i = 0; i < number_I; i++)
+	{
+		//SynchresultI数组存放的作用是画星座图
+		signal_SOQP_Out->userdata[useNum].SynchresultI[i] = inputi[i];
+		//demoresulti 存放I路判决的结果
+		demoresulti[i] = inputi[i] > 0 ? 1 : -1;
+	}
+
+
+	for (int i = 0; i < number_I; i++)
+	{
+		//SynchresultQ数组存放的作用是画星座图
+		signal_SOQP_Out->userdata[useNum].SynchresultQ[i] = inputq[i];
+		//demoresulti 存放Q路判决的结果
+		demoresultq[i] = inputq[i] > 0 ? 1 : -1;
+	}
+
+}
+
+int SingleWcdma::readgold() {
+
+	//    std::ifstream inputFile("F:/WCDMA1/gold.txt"); // ?????
+
+	//    if (!inputFile) {
+	//        std::cerr << "Failed to open the file." << std::endl;
+	//        return 1;
+	//    }
+
+	//    std::vector<float> data; // ?洢?????????
+	//    float value;
+
+	//    while (inputFile >> value) { // ???ж??????е?????
+	//        data.push_back(value); // ????????????????
+	//    }
+	//    Gold_i = new float[Gold_len];
+	//    Gold_q = new float[Gold_len];
+	//    for (int i = 0; i < data.size() / 2; i++) {
+	//        Gold_i [i] = data[i * 2];
+	//        Gold_q [i] = data[i * 2 + 1];
+	//    }
+	//    inputFile.close(); // ??????
+
+
+
+	//    std::ifstream inputFile1("F:/WCDMA1/ovsf.txt"); // ?????
+
+	//    if (!inputFile1) {
+	//        std::cerr << "Failed to open the file." << std::endl;
+	//        return 1;
+	//    }
+
+	//    std::vector<float> data1; // ?洢?????????
+	//    float value1;
+
+	//    while (inputFile1 >> value1) { // ???ж??????е?????
+	//        data1.push_back(value1); // ????????????????
+	//    }
+	//    ovsf_I = new float[Gold_len];
+	//    ovsf_Q = new float[Gold_len];
+	//    for (int i = 0; i < data1.size() / 2; i++) {
+	//        ovsf_I[i] = data1[i * 2];
+	//        ovsf_Q[i] = data1[i * 2 + 1];
+	//    }
+	//    inputFile.close(); // ??????
+	return 1;
+}
+
+
+void SingleWcdma::Demodulation(float* data_realin, float* data_imagin, WCdata WCdmadata, long long llBaseTime, signalout* signal_SOQP_Out)
+{
+	/*
+		data_realin输入信号实部
+		data_imagin输入信号虚部
+		WCdmadata 外部传入的一些扰码信息等
+
+	*/
+	static int spendTime = 0;
+	llSlic++; //标志位？？？
+
+	AGC(data_realin, target_power);
+	AGC(data_imagin, target_power);
+
+	//FILE* fp3;
+	//char file_path3[500];
+	//sprintf(file_path3, "E:/WCDMA1/signali.txt");   //11dB
+	//fp3 = fopen(file_path3, "at");
+	//for (int m = 0; m < 8192; m++)
+	//{
+	//	fprintf(fp3, "%f\n", data_realin[m]);
+	//}
+	//fclose(fp3);
+
+	 //       FILE* fp4;
+	 //   char file_path4[500];
+	 //   sprintf(file_path4, "E:/WCDMA1/signalq.txt");   //11dB
+	 //   fp4 = fopen(file_path4, "at");
+	 //   for (int m = 0; m < 8192; m++)
+	 //   {
+	 //   	fprintf(fp4, "%f\n", data_imagin[m]);
+	 //   }
+	 //   fclose(fp4);
+
+	memcpy(m_dataIbu + m_SamleSize, data_realin, sizeof(float) * m_SamleSize);  //将信号长度为m_SamleSize=8192拷贝到对应数组中
+	memcpy(m_dataQbu + m_SamleSize, data_imagin, sizeof(float) * m_SamleSize);
+
+	//Signalflag为false 则继续对信号进行捕获操作
+	if (Signalflag == false)
+	{
+		Capture(m_dataIbu, m_dataQbu, m_SamleSize, WCdmadata);
+		//Capture 函数执行捕获到信号时会记录Signalflag == true 以及 startpoint
+	}
+	//Signalflag为true 则继续对信号进行伪码同步和载波同步操作
+	if (Signalflag == true)
+	{
+		float* dataI = new float[m_SamleSize - startpoint];
+		float* dataQ = new float[m_SamleSize - startpoint];
+
+		memcpy(dataI, data_realin + startpoint, sizeof(float) * (m_SamleSize - startpoint));
+		memcpy(dataQ, data_imagin + startpoint, sizeof(float) * (m_SamleSize - startpoint));
+
+		if (startpoint != 0)
+		{
+			signal_SOQP_Out->startPoint = llSlic * 8192 + startpoint;
+			qDebug() << "startpoint = " << signal_SOQP_Out->startPoint;
+		}
+
+		if (timecout > 0.01 * WCDMS_FS)
+		{
+			auto startTime = std::chrono::system_clock::now();
+			Signalflag = false;
+			int signallen = 0.01 * WCDMS_FS;
+			float* databuffI = new float[signallen];
+			float* databuffQ = new float[signallen];
+
+			memcpy(databuffI, m_dataI, sizeof(float) * (signallen));
+			memcpy(databuffQ, m_dataQ, sizeof(float) * (signallen));
+
+			FILE* fp3;
+			char file_path3[500];
+			sprintf(file_path3, "E:/WCDMA1/signali.txt");   //11dB
+
+			fp3 = fopen(file_path3, "at");
+			for (int m = 0; m < 76800; m++)
+			{
+				fprintf(fp3, "%f\n", databuffI[m]);
+			}
+			fclose(fp3);
+
+			FILE* fp4;
+			char file_path4[500];
+			sprintf(file_path4, "E:/WCDMA1/signalq.txt");   //11dB
+			fp4 = fopen(file_path4, "at");
+			for (int m = 0; m < 76800; m++)
+			{
+				fprintf(fp4, "%f\n", databuffQ[m]);
+			}
+			fclose(fp4);
+
+			signal_SOQP_Out->useNum = WCdmadata.users.size();
+
+			QList<QFuture<void>> retList;
+			
+			for (int i = 0; i < 3; i++) 
+			{
+				QFuture<void> ret = QtConcurrent::run([=] 
+					{
+					float* SynchresultI = new float[signallen];
+					float* SynchresultQ = new float[signallen];
+					//auto startTime = std::chrono::system_clock::now();
+
+					symbolsync(databuffI, databuffQ, signallen, WCdmadata.Descramble_I, WCdmadata.Descramble_Q, WCdmadata.users[i], SynchresultI, SynchresultQ);
+					int de_len_i = floor((signallen) / (WCdmadata.users[i].spread_factor_I * 2));
+					int de_len_q = floor((signallen) / (spread_factor_Q * 2));
+					int* demoresulti = new int[de_len_i];
+					std::memset(demoresulti, 0, sizeof(int) * (de_len_i));
+					int* demoresultq = new int[de_len_i];
+					std::memset(demoresultq, 0, sizeof(int) * (de_len_i));
+
+
+
+					judgment(SynchresultI, SynchresultQ, WCdmadata.users[i], signallen, demoresulti, demoresultq, signal_SOQP_Out, i);
+
+					signal_SOQP_Out->userdata[i].demoQ = new int[de_len_i];
+
+					/*memcpy(signal_SOQP_Out->userdata[i].demoQ, demoresulti, de_len_i);*/
+
+					for (int j = 0; j < de_len_i; j++)
+					{
+						signal_SOQP_Out->userdata[i].demoQ[j] = demoresulti[j];
+						//qDebug() << signal_SOQP_Out->userdata[i].demoQ[j];
+					}
+
+					DELETE_ARR(SynchresultI);
+					DELETE_ARR(SynchresultQ);
+					DELETE_ARR(demoresulti);
+					DELETE_ARR(demoresultq);
+					});
+				retList.append(ret);
+			}
+			
+			/*
+				下面这串代码的作用是：保证三个线程都执行完之后，再继续往下面走
+				即是若有线程还没执行完，则一直执行While循环里面
+				若三个线程都执行完，则跳出while循环
+				isFinished为线程的返回值，每一个线程执行完之后，则isFinished=1；否则isFinished=0；
+			
+			*/
+			bool stop = 0;
+			while (!stop) 
+			{
+				int _stop = 1;			
+				for (int i = 0; i < 3; i++)
+				{
+					_stop &= retList.at(i).isFinished();
+				}			
+				if (_stop)
+				{
+					stop = 1;
+				}
+				else
+					QApplication::processEvents(QEventLoop::AllEvents, 5);
+			}
+
+			/*for (int i = 0; i < 3; i++) {
+				float* SynchresultI = new float[signallen];
+				float* SynchresultQ = new float[signallen];
+
+				symbolsync(databuffI, databuffQ, signallen, WCdmadata.users[i], SynchresultI, SynchresultQ);
+				int de_len_i = floor((signallen) / (WCdmadata.users[i].spread_factor_I * 2));
+				int de_len_q = floor((signallen) / (spread_factor_Q * 2));
+				int* demoresulti = new int[de_len_i];
+				memset(demoresulti, 0, sizeof(int) * (de_len_i));
+				int* demoresultq = new int[de_len_i];
+				memset(demoresultq, 0, sizeof(int) * (de_len_i));
+				judgment(SynchresultI, SynchresultQ, WCdmadata.users[i], signallen, demoresulti, demoresultq);
+
+
+				signal_SOQP_Out->userdata[i].demoQ = new int[de_len_i];
+				memcpy(signal_SOQP_Out->userdata[i].demoQ, demoresulti, de_len_i);
+
+				DELETE_ARR(SynchresultI);
+				DELETE_ARR(SynchresultQ);
+				DELETE_ARR(demoresulti);
+				DELETE_ARR(demoresultq);
+			}*/
+
+
+			FILE* fp42;
+			char file_path42[500];
+			sprintf(file_path42, "E:/WCDMA1/domoq1.txt");   //11dB
+			fp42 = fopen(file_path42, "at");
+			for (int m = 0; m < 2400; m++)
+			{
+				fprintf(fp42, "%d", signal_SOQP_Out->userdata[0].demoQ[m]);
+			}
+			fclose(fp42);
+
+			FILE* fp5;
+			
+			char file_path5[500];
+			
+			sprintf(file_path5, "E:/WCDMA1/domoq2.txt");   //11dB
+			
+			fp5 = fopen(file_path5, "at");
+
+			for (int m = 0; m < 4800; m++)
+			{
+				fprintf(fp5, "%d", signal_SOQP_Out->userdata[1].demoQ[m]);
+			}
+			
+			fclose(fp5);
+
+			FILE* fp41;
+			char file_path41[500];
+			sprintf(file_path41, "E:/WCDMA1/domoq3.txt");   //11dB
+			fp41 = fopen(file_path41, "at");
+			for (int m = 0; m < 19200; m++)
+			{
+				fprintf(fp41, "%d", signal_SOQP_Out->userdata[2].demoQ[m]);
+			}
+			fclose(fp41);
+
+
+			//QList<QFuture<void>> retList;
+			//for(int i = 0 ; i < WCdmadata.users.size(); i++) {
+
+			//    auto ret = QtConcurrent::run([&,i]{
+			//        symbolsync(databuffI, databuffQ, signallen, WCdmadata.users[i], SynchresultI[i], SynchresultQ[i]);
+
+			//        int de_len_i = floor((signallen) / (WCdmadata.users[i].spread_factor_I * 4));
+			//        int de_len_q = floor((signallen) / (spread_factor_Q * 4));
+			//        int* demoresulti = new int[de_len_i];
+			//        memset(demoresulti, 0, sizeof(int) * (de_len_i));
+			//        int* demoresultq = new int[de_len_i];
+			//        memset(demoresultq, 0, sizeof(int) * (de_len_i));
+			//        judgment(SynchresultI[i], SynchresultQ[i], WCdmadata.users[i], signallen, demoresulti, demoresultq);
+			//        signal_SOQP_Out->userdata[i].demoQ=new int[de_len_i];
+			//        memcpy(signal_SOQP_Out->userdata[i].demoQ,demoresulti,de_len_i);
+			//        signal_SOQP_Out->endPoint = llSlic * 8192;
+			//        DELETE_ARR(demoresulti);
+			//        DELETE_ARR(demoresultq);
+			//    });
+			//    retList.append(ret);
+			//}
+			//bool stop = 0;
+			//while(!stop){
+			//    int _stop = 1;
+			//    for(int i = 0 ; i < 3 ; i ++){
+			//        _stop &= retList.at(i).isFinished();
+			//    }
+			//    if(_stop){
+			//        stop = 1;
+			//    }else QApplication::processEvents(QEventLoop::AllEvents, 100);
+			//auto endTime = std::chrono::system_clock::now();
+			//auto time = std::chrono::duration_cast<milliseconds>(endTime - startTime);
+			//spendTime += time.count();
+			//qDebug() << "time = " << time.count();
+
+			auto endTime = std::chrono::system_clock::now();
+
+			auto time = std::chrono::duration_cast<milliseconds>(endTime - startTime);
+			
+			spendTime += time.count();
+			
+			qDebug() << "time = " << time.count();
+
+
+			signal_SOQP_Out->endPoint = llSlic * 8192;
+			
+			Signalflag = false;
+			
+			timecout = 0;
+
+			DELETE_ARR(databuffI);
+			
+			DELETE_ARR(databuffQ);
+		}
+		else 
+		{
+			memcpy(m_dataI + timecout, m_dataIbu + startpoint, sizeof(float) * (m_SamleSize - startpoint));
+			
+			memcpy(m_dataQ + timecout, m_dataQbu + startpoint, sizeof(float) * (m_SamleSize - startpoint));
+			
+			timecout += m_SamleSize - startpoint;
+
+		}
+		startpoint = 0;
+
+		delete[]dataI;
+		delete[]dataQ;
+	}
+
+	memmove(m_dataIbu, m_dataIbu + m_SamleSize, m_SamleSize * sizeof(float));
+	memmove(m_dataQbu, m_dataQbu + m_SamleSize, m_SamleSize * sizeof(float));
+
+	memset(m_dataIbu + m_SamleSize, 0, m_SamleSize * sizeof(float));
+	memset(m_dataQbu + m_SamleSize, 0, m_SamleSize * sizeof(float));
+
+
+}
+
 
 
 
