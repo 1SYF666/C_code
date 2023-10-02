@@ -1,2 +1,4 @@
 ﻿  exercise.cpp
+C:\Users\PC\Desktop\C\code1\C_code\Exercises_C\Exercises_C\exercise.cpp(3754,2): warning C4305: “初始化”: 从“double”到“const float”截断
+C:\Users\PC\Desktop\C\code1\C_code\Exercises_C\Exercises_C\exercise.cpp(3806,2): warning C4305: “初始化”: 从“double”到“const float”截断
   Exercises_C.vcxproj -> C:\Users\PC\Desktop\C\code1\C_code\Exercises_C\x64\Debug\Exercises_C.exe
