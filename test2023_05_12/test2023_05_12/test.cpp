@@ -2,28 +2,28 @@
 #include "point.h"
 #include "Circle.h"
 
-//µãºÍÔ²ÀàµÄ¹ØÏµ
+//ç‚¹å’Œåœ†ç±»çš„å…³ç³»
 
-//µãÀà
+//ç‚¹ç±»
 //class Point
 //{
 //public:
-//	//ÉèÖÃx
+//	//è®¾ç½®x
 //	void setX(int x)
 //	{
 //		m_X = x;
 //	}
-//	//»ñÈ¡x
+//	//è·å–x
 //	int getX()
 //	{
 //		return m_X;
 //	}
-//	//ÉèÖÃy
+//	//è®¾ç½®y
 //	void setY(int y)
 //	{
 //		m_Y = y;
 //	}
-//	//»ñÈ¡y
+//	//è·å–y
 //	int getY()
 //	{
 //		return m_Y;
@@ -42,70 +42,70 @@
 
 
 
-//Ô²Àà
+//åœ†ç±»
  
 //class Circle
 //{
-//	//ĞĞÎª
+//	//è¡Œä¸º
 //public:
-//	//ÉèÖÃ°ë¾¶
+//	//è®¾ç½®åŠå¾„
 //	void setR(int r)
 //	{
 //	   m_R = r;
 //	}
-//	//»ñÈ¡°ë¾¶
+//	//è·å–åŠå¾„
 //	int getR()
 //	{
 //		return m_R;
 //	}
 //	
-//	//ÉèÖÃÔ²ĞÄ
+//	//è®¾ç½®åœ†å¿ƒ
 //	void setCenter(Point center)
 //	{
 //		m_Center = center;
 //	}
-//	//»ñÈ¡Ô²ĞÄ
+//	//è·å–åœ†å¿ƒ
 //	Point getCenter()
 //	{
 //		return m_Center;
 //	}
 //
 //
-//	//ÊôĞÔ£º
+//	//å±æ€§ï¼š
 //private:
-//	int m_R;//°ë¾¶
+//	int m_R;//åŠå¾„
 //
-//	Point m_Center; //Ô²ĞÄ
+//	Point m_Center; //åœ†å¿ƒ
 //};
-void isInCircle(Circle& c, Point& p)   // ÒıÓÃµÄ·½Ê½½øĞĞ´«µİ
+void isInCircle(Circle& c, Point& p)   // å¼•ç”¨çš„æ–¹å¼è¿›è¡Œä¼ é€’
 {
-	//¼ÆËãÁ½µãÖ®¼ä¾àÀëµÄÆ½·½
+	//è®¡ç®—ä¸¤ç‚¹ä¹‹é—´è·ç¦»çš„å¹³æ–¹
 	int distance =
 		(c.getCenter().getX() - p.getX()) * (c.getCenter().getX() - p.getX()) +
 		(c.getCenter().getY() - p.getY()) * (c.getCenter().getY() - p.getY());
 
-	//¼ÆËã°ë¾¶µÄÆ½·½
+	//è®¡ç®—åŠå¾„çš„å¹³æ–¹
 	int rDistance = c.getR() * c.getR();
 
-	//ÅĞ¶Ï¹ØÏµ
+	//åˆ¤æ–­å…³ç³»
 	if (distance = rDistance)
 	{
-		cout << "µãÔÚÔ²ÉÏ" << endl;
+		cout << "ç‚¹åœ¨åœ†ä¸Š" << endl;
 	}
 	else if (distance > rDistance)
 	{
-		cout << "µãÔÚÔ²Íâ" << endl;
+		cout << "ç‚¹åœ¨åœ†å¤–" << endl;
 	}
 	else
 	{
-		cout << "µãÔÚÔ²ÄÚ" << endl;
+		cout << "ç‚¹åœ¨åœ†å†…" << endl;
 	}
 
 }
 
 int main()
 {
-	//´´½¨Ô²
+	//åˆ›å»ºåœ†
 	Circle c;
 	c.setR(10);
 	Point center;
@@ -113,12 +113,17 @@ int main()
 	center.setY(10);
 	c.setCenter(center);
 
-	//´´½¨µã
+	//åˆ›å»ºç‚¹
 	Point p;
 	p.setX(10);
 	p.setY(10);
 
-	//ÅĞ¶Ï¹ØÏµ
+	//åˆ¤æ–­å…³ç³»
 	isInCircle(c, p);
 
 }
+
+
+
+
+//chang  
