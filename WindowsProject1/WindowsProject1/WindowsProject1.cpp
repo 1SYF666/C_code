@@ -184,18 +184,41 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
                 DialogBox(hInst, MAKEINTRESOURCE(IDD_ABOUTBOX), hWnd, About);
                 break;
             case IDM_EXIT:
-                DestroyWindow(hWnd);
+                //所有XXWindow 为结尾的方法，都不会进入到消息队列中，而是直接执行
+                DestroyWindow(hWnd);  //DestroyWindow发送另一个消息 WM_DESTROY
                 break;
+
             default:
                 return DefWindowProc(hWnd, message, wParam, lParam);
             }
         }
         break;
-    case WM_PAINT:
+        //2023-10-08 addtion
+    case WM_LBUTTONDOWN:  //鼠标左键按下
+     
+        {//int xPos = GET_X_LPARAM(lParam);
+            int xPos = LOWORD(lParam);
+            //int yPos = GET_Y_LPARAM(lParam);
+            int yPos = HIWORD(lParam);
+            //char buf[1024];
+            //wsprintf(buf,TEXT("x=%d,y=%d"), xPos, yPos);
+            //MessageBox(hWnd, buf, TEXT("鼠标左键按下"), MB_OK);
+        }
+        break;
+
+    case WM_KEYDOWN://键盘
         {
-            PAINTSTRUCT ps;
+            MessageBox(hWnd, TEXT("键盘按下"),TEXT("键盘按下"),MB_OK);
+        }
+        break;
+    case WM_PAINT:  //绘图
+        {
+            PAINTSTRUCT ps;  //绘图结构体
             HDC hdc = BeginPaint(hWnd, &ps);
             // TODO: 在此处添加使用 hdc 的任何绘图代码...
+
+            TextOut(hdc, 100, 100, TEXT("HELLO"), strlen("HELLO"));
+
             EndPaint(hWnd, &ps);
         }
         break;
