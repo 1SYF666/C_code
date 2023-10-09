@@ -4485,7 +4485,7 @@
 //}
 
 
-#define LEN 10
+//#define LEN 10
 
 //void getnchar(char str[], int n)
 //{
@@ -4539,67 +4539,124 @@
 //}
 
 
-#define LEN 10
+//#define LEN 10
+//
+//char* getword(char* str)
+//{
+//	int ch;
+//	int n = 0;
+//	char* pt = str;
+//
+//	while ((ch = getchar()) != EOF && isspace(ch))
+//	{
+//		continue;
+//	}
+//
+//	if (ch == EOF)
+//	{
+//		return NULL;
+//	}
+//	else
+//	{
+//		n++;
+//		*str++ = ch;
+//	}
+//	while ((ch=getchar())!=EOF&&!isspace(ch)&&(n<LEN-1))
+//	{
+//		*str++ = ch;
+//		n++;
+//	}
+//	*str = '\0';
+//
+//	if (ch == EOF)
+//	{
+//		return NULL;
+//	}
+//	else
+//	{
+//		while ((getchar())!='\n')
+//		{
+//			continue;
+//		}
+//		return pt;
+//
+//	}
+//
+//}
+//
+//int main(int argc,char *argv[])
+//{
+//	char input[LEN];
+//
+//	printf("Please enter a word (EOF to quit):\n");
+//
+//	while (getword(input) != NULL)
+//	{
+//		printf("Result:\n");
+//		puts(input);
+//		printf("You can enter a word again (EOF to quit):\n");
+//	}
+//
+//	printf("Done.\n");
+//	return 0;
+//}
 
-char* getword(char* str)
+
+//*******************2023/10/09 8:57*********************//
+
+//string.c----使用字符串与用户交互
+#define MSG "You must have many talents.Tell me some."    //一个字符串常量
+
+#define LIM 5
+#define LINELEN 81  //最大字符串长度+1
+
+int main()
 {
-	int ch;
-	int n = 0;
-	char* pt = str;
+	char name[LINELEN];
+	char talents[LINELEN];
+	int i;
+	const char m1[40] = "Limits yourself to one line's worth.";  //初始化一个大小已经确定的char 数组
+	const char m2[] = "If you can't think of anything,fake it.";  //让编译七计算数组的大小
+	const char* m3 = "\nEnough about me - what's a your name?";
+	const char* mytal[LIM] = { "Adding numbers swiftly",          //初始化一个字符串指针数组
+								"Multiplying accurately","Stashing data",
+								"Following instructions to the letter",
+								"Understanding the C language" };
 
-	while ((ch = getchar()) != EOF && isspace(ch))
+	printf("Hi! I'm Clyde the computer. I have many talents.\n");
+	printf("Let me tell you some of them.\n");
+	puts("what were they? Ah,yes,here's a partial list.");
+	for (i = 0; i < LIM; i++)
 	{
-		continue;
+		puts(mytal[i]);   //打印计算机功能的列表
 	}
 
-	if (ch == EOF)
-	{
-		return NULL;
-	}
-	else
-	{
-		n++;
-		*str++ = ch;
-	}
-	while ((ch=getchar())!=EOF&&!isspace(ch)&&(n<LEN-1))
-	{
-		*str++ = ch;
-		n++;
-	}
-	*str = '\0';
+	puts(m3);
+	gets_s(name);
+	
+	printf("Well,%s,%s\n", name, MSG);
+	printf("%s\n%s\n", m1, m2);
 
-	if (ch == EOF)
-	{
-		return NULL;
-	}
-	else
-	{
-		while ((getchar())!='\n')
-		{
-			continue;
-		}
-		return pt;
+	gets_s(talents);
 
-	}
+	puts("Let's a see if I've got that list:");
 
-}
+	puts(talents);
 
-int main(int argc,char *argv[])
-{
-	char input[LEN];
+	printf("Thanks for the information,%s.\n", name);
 
-	printf("Please enter a word (EOF to quit):\n");
-
-	while (getword(input) != NULL)
-	{
-		printf("Result:\n");
-		puts(input);
-		printf("You can enter a word again (EOF to quit):\n");
-	}
-
-	printf("Done.\n");
 	return 0;
+
+
+
+	
+
+
+
+
+
 }
+
 
 
 
