@@ -4539,68 +4539,6 @@
 //}
 
 
-//#define LEN 10
-//
-//char* getword(char* str)
-//{
-//	int ch;
-//	int n = 0;
-//	char* pt = str;
-//
-//	while ((ch = getchar()) != EOF && isspace(ch))
-//	{
-//		continue;
-//	}
-//
-//	if (ch == EOF)
-//	{
-//		return NULL;
-//	}
-//	else
-//	{
-//		n++;
-//		*str++ = ch;
-//	}
-//	while ((ch=getchar())!=EOF&&!isspace(ch)&&(n<LEN-1))
-//	{
-//		*str++ = ch;
-//		n++;
-//	}
-//	*str = '\0';
-//
-//	if (ch == EOF)
-//	{
-//		return NULL;
-//	}
-//	else
-//	{
-//		while ((getchar())!='\n')
-//		{
-//			continue;
-//		}
-//		return pt;
-//
-//	}
-//
-//}
-//
-//int main(int argc,char *argv[])
-//{
-//	char input[LEN];
-//
-//	printf("Please enter a word (EOF to quit):\n");
-//
-//	while (getword(input) != NULL)
-//	{
-//		printf("Result:\n");
-//		puts(input);
-//		printf("You can enter a word again (EOF to quit):\n");
-//	}
-//
-//	printf("Done.\n");
-//	return 0;
-//}
-
 
 //*******************2023/10/09 8:57*********************//
 
@@ -4650,20 +4588,200 @@
 //
 //}
 
-int main()
+//int main()
+//{
+//	const char* mesq = "Don't be a fool";
+//	const char* copy;
+//
+//	copy = mesq;
+//
+//	printf("%s\n", copy);
+//	printf("mesq =%s;&mesq=%p;value=%p\n", mesq, &mesq, mesq);
+//	printf("copy =%s;&copy=%p;value=%p\n", copy, &copy, copy);
+//
+//
+//	return 0;
+//}
+
+
+
+//*******************2023/10/10 20:57*********************//
+//int main()
+//{
+//	char name1[11], name2[11];
+//	int count;
+//
+//	printf("Please enter 2 names.\n");
+//	count = scanf("%5s %10s", name1, name2);
+//	printf("I read the %d names %s and %s.\n", count, name1, name2);
+//
+//	return 0;
+//}
+
+/* put_out.c -- 使用puts()*/
+//#dKefine DEF "I am a #define string."
+//int main()
+//{
+//	char str1[80] = "An array was initialized to me.";
+//	const char* str2 = "A pointer was initialized to me.";
+//
+//	puts("I'm an argument to puts().");
+//	puts(DEF);
+//	puts(str1);
+//	puts(str2);
+//	puts(&str1[5]);
+//	puts(str2 + 4);
+//
+//	return 0;
+//}
+
+//int main()
+//{
+//	char side_a[] = 'SIDE A';
+//	char dont[] = { 'w','D','W','!' };
+//	char side_b[] = 'SIDE B';
+//
+//	puts(dont); /* dont 不是一个字符串 */
+//
+//	return 0;
+//}
+
+
+// put1.c -- 不添加换行符打印一个字符串‘
+//void put1(const char* string) /*不会改变这个字符串*/
+//{
+//
+//	//当string指向空字符时，*string 的值为0，
+//	//while(*string)
+//	while (*string!='\0')
+//	{
+//		putchar(*string++);
+//	}
+//}
+//
+///* put2.c -- 打印一个字符串，并统计其中的字符个数 */
+//int put2(const char* string)
+//{
+//	int count = 0;
+//	while (*string)
+//	{
+//		putchar(*string++);
+//		count++;
+//	}
+//	putchar('\n');
+//	return(count);
+//}
+//
+//int main()
+//{
+//	put1("If I'd as much money");
+//	put1(" as I could spend,\n");
+//
+//	printf("I cound %d characters.\n", put2("I never would cry old chairs to mend."));
+//
+//	return 0;
+//}
+
+//int main()
+//{
+//	char str[20] = {0};  
+//	char name[20] = {0};
+//
+//	fgets(str, 20, stdin);
+//	int i = 0;
+//	while (*str != '\n' && *str != '\0' && *str != ' ')
+//	{
+//		 name[i]= *(str+i);
+//		 i++;
+//	}
+//	fputs(name,stdout);
+//
+//	return 0;
+//}
+
+
+#define LEN 10
+
+char* getword(char* str,int len)
 {
-	const char* mesq = "Don't be a fool";
-	const char* copy;
-
-	copy = mesq;
-
-	printf("%s\n", copy);
-	printf("mesq =%s;&mesq=%p;value=%p\n", mesq, &mesq, mesq);
-	printf("copy =%s;&copy=%p;value=%p\n", copy, &copy, copy);
+	int ch;
+	int n = 0;
+	char* pt = str;
 
 
+	
+	while ((ch = getchar()) != EOF && isspace(ch))  //当从标准输入文件中获取字符不是EOF 且 是空白、制表符或换行符时，
+	{						// 当字符为空白、制表符或换行符时，isspace 返回非0值
+		continue;			// 执行循环体
+	//跳过第一个空白前面的所有字符
+	}
+
+	if (ch == EOF)    // 不执行循环体后，如果获取字符是EOF时 
+	{
+		return NULL;
+		//↑若第一次直接输入Ctrl+Z(Windows)或Ctrl+D(Unix/Linux/Mac os)则返回空指针;
+	}
+	else              // 如何获取字符不是EOF 且 不是 空白、制表符或换行符时
+	{
+		n++;          
+		*str++ = ch;  // 将该字符赋给str指针  
+	    /*↑把第一个非空白字符赋值给str
+		所指向的内存空间内并指向下一个
+		存储空间;*/
+	}
+	
+	while ((ch=getchar())!=EOF&&!isspace(ch)&&(n<len))  //当读取字符不是 空白、制表符或换行符时且长度小于LEN-1
+	{
+		*str++ = ch;
+		/*↑从第2个字符开始赋值直到
+           遇见单词后面第一个空白符;*/
+		n++;
+	}
+	*str = '\0';  //给该字符串赋个结尾符号'\0'
+
+	if (ch == EOF) //该字符是文件末尾标志时
+	{
+		return NULL;
+		/*↑输入Ctrl+Z(Windows)或Ctrl+D(Unix/Linux/Mac os)返回空指针;*/
+	}
+	else
+	{
+		while ((getchar())!='\n')
+		{
+			continue;   //将后面的字符都丢掉
+			//↑从单词后面丢弃输入行中的其它字符;
+		}
+		return pt;
+
+	}
+
+}
+
+int main(int argc,char *argv[])
+{
+	char input[LEN];
+
+	printf("Please enter a word (EOF to quit):\n");
+
+	while (getword(input,LEN-1) != NULL)
+	{
+		printf("Result:\n");
+		puts(input);
+		printf("You can enter a word again (EOF to quit):\n");
+	}
+
+	printf("Done.\n");
 	return 0;
 }
+
+
+
+
+
+
+
+
+
 
 
 
